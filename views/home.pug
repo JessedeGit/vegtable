@@ -5,15 +5,20 @@ block content
   p.lead Focusing on servicing community 专注服务社区
   .row
     .col-sm-6
-      h2 On Sale 正在销售
-      each item, index in products
-       li(style="display: inline; font-size:20px;")= item.name + ' | '
-       li(style="display: inline; font-size:20px;")= item.unit1  + ' | '
-       li(style="display: inline; font-size:20px;")= item.price + item.unit2  + ' '       
-       input(id = 'input' + index size = '1' value='' style="display:inline;")
-       hr
-      p
-        a.btn.btn-default(href='#', role='button' style="font-size:30px;") Sumit 提交订单
+    case nextSale
+      when 0
+        h2 On Sale 正在销售    
+        each item, index in products
+          li(style="display: inline; font-size:20px;")= item.name + ' | '
+          li(style="display: inline; font-size:20px;")= item.unit1  + ' | '
+          li(style="display: inline; font-size:20px;")= item.price + item.unit2  + ' '       
+          input(id = 'input' + index size = '1' value='' style="display:inline;")
+          hr
+        p
+          a.btn.btn-default(href='#', role='button' style="font-size:30px;") Sumit 提交订单
+      default
+        h2 Sorry #{nextSale}
+       
     //- .col-sm-6
     //-   h2 Heading
     //-   p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
