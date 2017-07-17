@@ -6,9 +6,10 @@ block content
   hr
   .row
     .col-sm-6
-      h2 Products Available Today 
-      h2 今日销售产品
-      p 此处应该有一个产品列表，可供客户输入数量进行采购
+      h2 On Sale 正在销售
+      p #{products[0].name}
+      p #{products[1].name}
+      p #{products[2].name}
       p
         a.btn.btn-default(href='#', role='button') Sumit 提交订单
     //- .col-sm-6
