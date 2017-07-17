@@ -9,6 +9,7 @@
 
 var fs = require('fs');
 // var products = Array.from(JSON.parse(fs.readFileSync('./data/currPrdt.data', 'utf8')).items);
+let products = {};
 fs.readFile('./data/currPrdt.data', 'utf8', function (err, data) {
   if (err) throw err;
   products = Array.from(JSON.parse(data).items);
