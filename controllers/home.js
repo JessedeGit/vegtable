@@ -31,6 +31,17 @@ exports.index = (req, res) => {
   });
 };
 
+exports.postIndex = (req, res) => {
+  req.assert('name', 'Name cannot be blank').notEmpty();
+  req.assert('input0', '1st cannot be blank').notEmpty();
+};
+
+
+
+
+
+
+
 function isJSON(str) {
     try {
         JSON.parse(str);
