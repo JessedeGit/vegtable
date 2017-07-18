@@ -23,7 +23,7 @@ fs.readFile('./data/currPrdt.data', 'utf8', function (err, data) {
     products = Array.from(JSON.parse(data).items);
 });
 
-exports.index = (req, res) => {
+exports.getIndex = (req, res) => {
   res.render('home', {
     title: 'Home',
     products,
@@ -32,8 +32,42 @@ exports.index = (req, res) => {
 };
 
 exports.postIndex = (req, res) => {
-  req.assert('name', 'Name cannot be blank').notEmpty();
-  req.assert('input0', '1st cannot be blank').notEmpty();
+  // check each text input make sure it's a positive number 
+  // or blank
+  // or 0
+  // alert user if more than 10
+
+  // req.assert('input0', 'input0 cannot be blank11').isEmpty().isInt();
+  // req.assert('input1', 'input1 cannot be blank11').notEmpty();
+  
+  // req.assert('email', 'Email is not valid11').isEmail();
+  // req.assert('message', 'Message cannot be blank11').notEmpty();
+  console.log("hello");
+
+  // const errors = req.validationErrors();
+
+  // if (errors) {
+  //   req.flash('errors', errors);
+  //   return res.redirect('/home');
+  // }
+
+
+
+  // const mailOptions = {
+  //   to: 'your@email.com',
+  //   from: `${req.body.name} <${req.body.email}>`,
+  //   subject: 'Contact Form | Hackathon Starter',
+  //   text: req.body.message
+  // };
+
+  // transporter.sendMail(mailOptions, (err) => {
+  //   if (err) {
+  //     req.flash('errors', { msg: err.message });
+  //     return res.redirect('/home');
+  //   }
+  //   req.flash('success', { msg: 'Email has been sent successfully!' });
+  //   res.redirect('/home');
+  // });
 };
 
 

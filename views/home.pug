@@ -1,33 +1,32 @@
 extends layout
 
 block content
-  h1(style="font-size:30px;") Welcome to 为民团购
+  //- h1(style="font-size:30px;") Welcome to 为民团购
   //- p.lead Focusing on servicing community 专注服务社区
   //- .row
   //-   .col-sm-6
-  form.form-horizontal(method='POST')
+  form.form-horizontal(method='POST')    
+    .form-group
+      case nextSale
+        when 0
+          h2(style="font-size:30px;color:green;")  On Sale 正在销售    
+          each item, index in products
+            li(style="list-style-type: none; color:Magenta; width: 100px; overflow-x: auto; float: left; margin-left: 5px; font-size:20px;")= item.name
+            li(style="list-style-type: none; color:blue; width: 100px; overflow-x: auto; float: left; margin-left: 3px; font-size:20px;")= item.unit1
+            li(style="list-style-type: none; color:DeepPink; width: 70px; overflow-x: auto; float: left; margin-left: 3px; font-size:20px;")= item.price + item.unit2     
+            input(id = `input${index}` size = '1' value='0' type="number" min="0" style="display:inline; margin-left: 5px;overflow-x: auto;  width: 50px;")
+            hr
+            //- button.btn.btn-primary(type='submit' style="font-size:100px;")
+            //- a.btn.btn-default(type='submit' href='#', role='button' style="font-size:30px;color:green;") 
+          
+        default
+          h2 #{nextSale}
     input(type='hidden', name='_csrf', value=_csrf)
     .form-group
-    case nextSale
-      when 0
-        h2(style="font-size:30px;color:green;") On Sale 正在销售    
-        each item, index in products
-          li(style="list-style-type: none; color:Magenta; width: 100px; overflow-x: auto; float: left; margin-left: 5px; font-size:20px;")= item.name
-          li(style="list-style-type: none; color:blue; width: 100px; overflow-x: auto; float: left; margin-left: 3px; font-size:20px;")= item.unit1
-          li(style="list-style-type: none; color:DeepPink; width: 60px; overflow-x: auto; float: left; margin-left: 3px; font-size:20px;")= item.price + item.unit2     
-          input(name = 'input0' id = 'input' + index size = '1' value='' style="display:inline; margin-left: 3px;")
-          hr
-        input.form-control(type='text', name='name', id='name', autofocus=true)
-          //- button.btn.btn-primary(type='submit' style="font-size:100px;")
-          //- a.btn.btn-default(type='submit' href='#', role='button' style="font-size:30px;color:green;") 
-        .form-group
-          .col-sm-offset-2.col-sm-8
-            button.btn.btn-primary(type='submit')
-              i.fa.fa-envelope
-              | Send
-              //- Submit 提交订单
-      default
-        h2 #{nextSale}
+        .col-sm-offset-2.col-sm-8
+          button.btn.btn-primary(type='submit')
+            i.fa.fa-envelope
+            | Submit 提交订单
        
     //- .col-sm-6
     //-   h2 Heading
