@@ -6,8 +6,8 @@
 // var Author = require('../models/author');
 // var Genre = require('../models/genre');
 // var BookInstance = require('../models/bookinstance');
-
-var fs = require('fs');
+let fs = require('fs');
+const alert = require('alert-node');
 // var products = Array.from(JSON.parse(fs.readFileSync('./data/currPrdt.data', 'utf8')).items);
 let products = {};
 let nextSale = 0;
@@ -32,17 +32,37 @@ exports.getIndex = (req, res) => {
 };
 
 exports.postIndex = (req, res) => {
-  // check each text input make sure it's a positive number 
-  // or blank
-  // or 0
-  // alert user if more than 10
+  // check user's order input
+  let proQty = products.length;
+  let anyQty = false;
+  let qtyI = '';
+  for (let i = 0; i < proQty; i++){
+    qtyI = `input${i}`;
+    products[i].qty = req.body[qtyI];
+    if(products[i].qty > 0) anyQty = true;
+  }
+  
+  //
+  if(!anyQty) {
+    alert('貌似您还没有订购任何一款产品？');   
+    return res.redirect('/home');
+  }
+  else alert('貌似订购产品!'); 
+
+  // check current user login or not  
+  if (!req.user) { // not login?
+    res.render('account/login', {
+      title: 'Login'
+    });
+  } 
+
+  // req.body.input0;
 
   // req.assert('input0', 'input0 cannot be blank11').isEmpty().isInt();
   // req.assert('input1', 'input1 cannot be blank11').notEmpty();
   
   // req.assert('email', 'Email is not valid11').isEmail();
   // req.assert('message', 'Message cannot be blank11').notEmpty();
-  console.log("hello");
 
   // const errors = req.validationErrors();
 
@@ -52,10 +72,8 @@ exports.postIndex = (req, res) => {
   // }
 
 
-
   // const mailOptions = {
   //   to: 'your@email.com',
-  //   from: `${req.body.name} <${req.body.email}>`,
   //   subject: 'Contact Form | Hackathon Starter',
   //   text: req.body.message
   // };
@@ -74,8 +92,6 @@ exports.postIndex = (req, res) => {
 
 
 
-
-
 function isJSON(str) {
     try {
         JSON.parse(str);
@@ -85,6 +101,11 @@ function isJSON(str) {
     return true;
 }
 
+function MyError(message) {
+  this.name = 'MyError';
+  this.message = message || 'Default Message';
+  this.stack = (new Error()).stack;
+}
 // var fs = require('fs');
 // var async = require('async');
 
