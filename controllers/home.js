@@ -61,6 +61,8 @@ exports.postIndex = (req, res) => {
   }
 
   
+
+  
 };
   // alert(req.user._id); 
   // alert(req.user.profile.name);   
