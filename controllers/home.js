@@ -35,11 +35,14 @@ exports.postIndex = (req, res) => {
   // check user's order input
     // check current user login or not  
   if (!req.user) { // not login?
-    alert('请先登陆！'); 
+    // alert('请先登陆！'); 
+    // res.send(500,'请返回先登陆！');
+    req.flash('success', { msg: '请先登陆！' });
     return res.render('account/login', {
       title: 'Login'
     });  
   } 
+  
 
   let proQty = products.length;
   let anyQty = false;
@@ -51,13 +54,17 @@ exports.postIndex = (req, res) => {
   }
  
   if(!anyQty) {
-    alert('貌似您还没有订购任何产品？');   
+    // alert('貌似您还没有订购任何产品？');  
+    // res.send(500,'貌似您还没有订购任何产品？请返回订购！');  
+    req.flash('success', { msg: '貌似您还没有订购任何产品？' });   
     return res.redirect('/home');
   }
 
-  alert(req.user._id); 
-  alert(req.user.profile.name);   
-  alert(req.user.email); 
+  
+};
+  // alert(req.user._id); 
+  // alert(req.user.profile.name);   
+  // alert(req.user.email); 
  
   // req.body.input0;
 
@@ -89,7 +96,7 @@ exports.postIndex = (req, res) => {
   //   req.flash('success', { msg: 'Email has been sent successfully!' });
   //   res.redirect('/home');
   // });
-};
+
 
 function isJSON(str) {
     try {

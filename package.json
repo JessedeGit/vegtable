@@ -15,7 +15,7 @@
     "eslint": "eslint **/*.js"
   },
   "dependencies": {
-    "alert-node": "0.2.1",
+    "alert-node": "^0.2.1",
     "bcrypt-nodejs": "^0.0.3",
     "bluebird": "^3.4.7",
     "body-parser": "^1.15.2",
