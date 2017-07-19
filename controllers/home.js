@@ -33,6 +33,14 @@ exports.getIndex = (req, res) => {
 
 exports.postIndex = (req, res) => {
   // check user's order input
+    // check current user login or not  
+  if (!req.user) { // not login?
+    alert('请先登陆！'); 
+    return res.render('account/login', {
+      title: 'Login'
+    });  
+  } 
+
   let proQty = products.length;
   let anyQty = false;
   let qtyI = '';
@@ -41,21 +49,16 @@ exports.postIndex = (req, res) => {
     products[i].qty = req.body[qtyI];
     if(products[i].qty > 0) anyQty = true;
   }
-  
-  //
+ 
   if(!anyQty) {
-    alert('貌似您还没有订购任何一款产品？');   
+    alert('貌似您还没有订购任何产品？');   
     return res.redirect('/home');
   }
-  else alert('貌似订购产品!'); 
 
-  // check current user login or not  
-  if (!req.user) { // not login?
-    res.render('account/login', {
-      title: 'Login'
-    });
-  } 
-
+  alert(req.user._id); 
+  alert(req.user.profile.name);   
+  alert(req.user.email); 
+ 
   // req.body.input0;
 
   // req.assert('input0', 'input0 cannot be blank11').isEmpty().isInt();
@@ -88,10 +91,6 @@ exports.postIndex = (req, res) => {
   // });
 };
 
-
-
-
-
 function isJSON(str) {
     try {
         JSON.parse(str);
@@ -101,11 +100,11 @@ function isJSON(str) {
     return true;
 }
 
-function MyError(message) {
-  this.name = 'MyError';
-  this.message = message || 'Default Message';
-  this.stack = (new Error()).stack;
-}
+// function MyError(message) {
+//   this.name = 'MyError';
+//   this.message = message || 'Default Message';
+//   this.stack = (new Error()).stack;
+// }
 // var fs = require('fs');
 // var async = require('async');
 
