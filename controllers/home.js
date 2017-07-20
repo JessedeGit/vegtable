@@ -8,6 +8,8 @@
 // var BookInstance = require('../models/bookinstance');
 let fs = require('fs');
 const alert = require('alert-node');
+const Orders = require('../models/Orders');
+
 // var products = Array.from(JSON.parse(fs.readFileSync('./data/currPrdt.data', 'utf8')).items);
 let products = {};
 let nextSale = 0;
@@ -41,8 +43,7 @@ exports.postIndex = (req, res) => {
     return res.render('account/login', {
       title: 'Login'
     });  
-  } 
-  
+  }   
 
   let proQty = products.length;
   let anyQty = false;
@@ -52,7 +53,7 @@ exports.postIndex = (req, res) => {
     products[i].qty = req.body[qtyI];
     if(products[i].qty > 0) anyQty = true;
   }
- 
+
   if(!anyQty) {
     // alert('貌似您还没有订购任何产品？');  
     // res.send(500,'貌似您还没有订购任何产品？请返回订购！');  
@@ -60,9 +61,24 @@ exports.postIndex = (req, res) => {
     return res.redirect('/home');
   }
 
-  
-
-  
+  const orderedPdt = products.filter(v => (v.qty > 0));
+  const totalPrice = orderedPdt.reduce((a, v) => (a + v.qty * v.price), 0);
+  orderedPdt.forEach(v => (v.totalPrice = v.qty * v.price));
+  //write into database
+  const myOrder = new Orders({
+    email: req.user.email,
+    // number: 
+    name: req.user.name,
+    // data
+    status: "未付款",
+    totalPrice: totalPrice,
+    // eTaketime:
+    items: orderedPdt,
+  });  
+  myOrder.save((err) => {
+      if (err) { return next(err); }
+      res.redirect('/');
+  });
 };
   // alert(req.user._id); 
   // alert(req.user.profile.name);   
