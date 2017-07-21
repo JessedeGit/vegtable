@@ -77,7 +77,7 @@ exports.postIndex = (req, res) => {
   });  
   myOrder.save((err) => {
       if (err) { return next(err); }
-      res.redirect('/');
+      res.redirect('/order');
   });
 };
   // alert(req.user._id); 

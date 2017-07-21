@@ -34,6 +34,7 @@ const homeController = require('./controllers/home');
 const userController = require('./controllers/user');
 const apiController = require('./controllers/api');
 const contactController = require('./controllers/contact');
+const orderController = require('./controllers/order');
 
 /**
  * API keys and Passport configuration.
@@ -117,6 +118,7 @@ app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }))
 /**
  * Primary app routes.
  */
+app.get('/order', orderController.getOrder);
 app.get('/', homeController.getIndex);
 app.get('/home', homeController.getIndex);
 app.post('/', homeController.postIndex);

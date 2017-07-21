@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  .page-header
+    h3 Order List 订单列表
+
+  form.form-horizontal(method='POST')
+    .form-group
+      case rst.length
+        when 0
+          h2(style="font-size:30px;color:green;")  您目前没有未付款订单！  
+        default 
+          each item, index in rst
+            li(style="list-style-type: none; color:blue; font-size:15px;")= `订单编号：${index + 1}`
+            li(style="list-style-type: none; color:Magenta;  font-size:15px;")= `用户邮件：${item.email}`
+            li(style="list-style-type: none; color:blue; font-size:15px;")= `下单时间：${item.createdAt.getMonth() + 1}月${item.createdAt.getDate()}日${item.createdAt.getHours()}时${item.createdAt.getMinutes()}分`     
+            li(style="list-style-type: none; color:DeepPink; font-size:15px;")= `订单总价：$${item.totalPrice}`  
+            li(style="list-style-type: none; color:blue;  font-size:15px;")= `订单状态：${item.status}`
+            li(style="list-style-type: none; color:blue;  font-size:15px;")= `所订货物:`            
+            each pdt, index in item.items
+              li(style="list-style-type: none;")= `${index + 1}: ` + pdt.name + ", " + pdt.qty + pdt.unit2.replace("/","") + ", " + "共 $" + pdt.totalPrice              
+            hr
+    //- .form-group
+    //-   label(class='col-sm-2 control-label', for='message') Body
+    //-   .col-sm-8
+    //-     textarea.form-control(name='message', id='message', rows='7')
+    //- //- .form-group
+    //-   .col-sm-offset-2.col-sm-8
+    //-     button.btn.btn-primary(type='submit')
+    //-       i.fa.fa-envelope
+    //-       | Send
