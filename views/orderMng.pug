@@ -1,0 +1,35 @@
+extends layout
+
+block content
+  .page-header
+    h4 Unpaid Order List 订单列表
+
+  form.form-horizontal(method='POST')
+    .form-group
+      case rst.length
+        when 0
+          h2(style="font-size:30px;color:green;")  目前没有订单！  
+        default 
+          each item, index in rst
+            li(style="color:Magenta;  font-size:15px;")= `${item.email}：$${item.totalPrice}下单${item.createdAt.getMonth() + 1}月${item.createdAt.getDate()}日${item.createdAt.getHours()}:${item.createdAt.getMinutes()}` 
+            //- li(style="list-style-type: none; color:blue; font-size:15px;")= `下单时间：${item.createdAt.getMonth() + 1}月${item.createdAt.getDate()}日${item.createdAt.getHours()}时${item.createdAt.getMinutes()}分`     
+            //- li(style="list-style-type: none; color:blue;  font-size:15px;")= `订单状态：${item.status}`
+            li(style="color:blue;  font-size:15px;")= `预计取货时间：${item.fetchTime}`
+            //- li(style="list-style-type: none; color:blue;  font-size:15px;")= `所订货物:`            
+            each pdt, index in item.items
+              li(style="overflow-x: auto; float: left;")= "☻" + pdt.name + pdt.qty + pdt.unit2.replace("/","") + "$" + pdt.totalPrice            
+            <br />
+            .col-sm-offset-2.col-sm-8
+              button.btn.btn-primary(type='button' style="font-size:12px; overflow-x: auto; float: left; margin-left: 1px;") 未付款
+              button.btn.btn-primary(type='button' style="font-size:12px; overflow-x: auto; float: right; margin-left: 1px;") 点我取消
+              
+            hr
+    //- .form-group
+    //-   label(class='col-sm-2 control-label', for='message') Body
+    //-   .col-sm-8
+    //-     textarea.form-control(name='message', id='message', rows='7')
+    //- //- .form-group
+      //- .col-sm-offset-2.col-sm-8
+      //-   button.btn.btn-primary(type='submit')
+      //-     i.fa.fa-envelope
+      //-     | Send

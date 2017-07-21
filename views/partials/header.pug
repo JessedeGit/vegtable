@@ -19,6 +19,8 @@
           a(href='/order') My Order | 我的订单
         li(class=(title == 'Contact') ? 'active' : undefined)
           a(href='/contact') Notice Board | 公告栏
+        li 
+          a(href='/orderMng') Order Management | 管理订单
       ul.nav.navbar-nav.navbar-right
         if !user
           li(class=(title == 'Login') ? 'active' : undefined)
