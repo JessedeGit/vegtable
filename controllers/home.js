@@ -40,8 +40,8 @@ exports.postIndex = (req, res) => {
     // alert('请先登陆！'); 
     // res.send(500,'请返回先登陆！');
     req.flash('success', { msg: '请先登陆！' });
-    return res.render('account/login', {
-      title: 'Login'
+    return res.render('home', {
+      // title: 'Login'
     });  
   }   
 
@@ -74,6 +74,7 @@ exports.postIndex = (req, res) => {
     totalPrice: totalPrice,
     // eTaketime:
     items: orderedPdt,
+    fetchTime: req.body['fetchTime'],
   });  
   myOrder.save((err) => {
       if (err) { return next(err); }

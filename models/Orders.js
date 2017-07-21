@@ -24,7 +24,8 @@ const orderSchema = new mongoose.Schema({
   totalPrice: Number,
   eTakeTime: Date,
   aTakeTime: Date,
-  items: [itemSchema]
+  items: [itemSchema],
+  fetchTime: String,
 }, { timestamps: true });
   // facebook: String,
   // twitter: String,

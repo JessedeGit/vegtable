@@ -9,7 +9,7 @@ block content
     .form-group
       case nextSale
         when 0
-          h2(style="font-size:30px;color:green;")  On Sale 正在销售    
+          h2(style="font-size:20px;color:green;")  ON SALE 正在销售    
           each item, index in products
             li(style="list-style-type: none; color:Magenta; width: 100px; overflow-x: auto; float: left; margin-left: 5px; font-size:20px;")= item.name
             li(style="list-style-type: none; color:blue; width: 100px; overflow-x: auto; float: left; margin-left: 3px; font-size:20px;")= item.unit1
@@ -20,6 +20,9 @@ block content
             //- a.btn.btn-default(type='submit' href='#', role='button' style="font-size:30px;color:green;") 
           input(type='hidden', name='_csrf', value=_csrf)
           .form-group
+              label(class='col-sm-2 control-label') Estimated Fetch Time预计取货时间
+              .col-sm-8
+                input.form-control(type='text', name='fetchTime', id='fetchTime', value='月 日, 周日 ')
               .col-sm-offset-2.col-sm-8
                 button.btn.btn-primary(type='submit' style="font-size:30px;")
                   i.fa.fa-envelope

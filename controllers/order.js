@@ -4,13 +4,21 @@ const Orders = require('../models/Orders');
 let rst = null;
 
 exports.getOrder = (req, res) => {
+  if (!req.user) { // not login?
+  // alert('请先登陆！'); 
+  // res.send(500,'请返回先登陆！');
+  req.flash('success', { msg: '请先登陆！' });
+  return res.render('home', {
+    // title: 'Login'
+    });  
+  }  
 
   MongoClient.connect(process.env.MONGODB_URI, function(err, db) {
     if (err) throw err;
     var query = { email: req.user.email, status: '未付款' };
     db.collection("orders").find(query).toArray(function(err, result) {
         if (err) throw err;
-        console.log(result);
+        // console.log(result);
         rst = result;
         // req.flash('success', { msg: rst.length});
         res.render('order', {

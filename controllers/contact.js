@@ -12,9 +12,24 @@ const transporter = nodemailer.createTransport({
  * GET /contact
  * Contact form page.
  */
+let fs = require('fs');
+let notice = '';
+
+fs.readFile('./data/notice.data', 'utf8', function (err, data) {
+  if (err) throw err;
+  // if (!fs.isEmptySync('./data/currPrdt.data'))  
+  notice = data;
+  // if(!isJSON(data)) {
+  //   console.log('data: ' + data);
+  //   products = [];
+  //   nextSale = data.toString();
+  // } else
+  //   products = Array.from(JSON.parse(data).items);
+});
 exports.getContact = (req, res) => {
   res.render('contact', {
-    title: 'contact'
+    title: 'contact',
+    notice,
   });
 };
 
