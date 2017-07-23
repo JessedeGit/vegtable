@@ -9,11 +9,11 @@
 let fs = require('fs');
 const alert = require('alert-node');
 const Orders = require('../models/Orders');
+  let products = {};
 
 // var products = Array.from(JSON.parse(fs.readFileSync('./data/currPrdt.data', 'utf8')).items);
 exports.getIndex = (req, res) => {
 // const adminOrNot = process.env.ADMIN_EMAILS.includes(user.email);
-  let products = {};
   let nextSale = 0;
   fs.readFile('./data/currPrdt.data', 'utf8', function (err, data) {
     if (err) throw err;
@@ -42,7 +42,7 @@ exports.postIndex = (req, res) => {
   if (!req.user) { // not login?
     // alert('请先登陆！'); 
     // res.send(500,'请返回先登陆！');
-    req.flash('success', { msg: '请先登陆！' });
+    req.flash('success', { msg: 'Please Login 请先登陆！' });
     return res.render('home', {
       // title: 'Login'
     });  

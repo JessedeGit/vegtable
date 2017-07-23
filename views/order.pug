@@ -10,9 +10,10 @@ block content
         when 0
           h2(style="font-size:30px;color:green;")  您目前没有未付款订单！  
         default 
-          each item, index in rst
+          each item, index in rst 
             li(style="list-style-type: none; color:blue; font-size:15px;")= `订单编号：${index + 1}`
-            li(style="list-style-type: none; color:Magenta;  font-size:15px;")= `用户邮件：${item.email}`
+            li(style="list-style-type: none; color:Magenta;  font-size:15px;")= `客户邮件：${item.email}`
+            li(style="list-style-type: none; color:Magenta;  font-size:15px;")= `客户网名：${item.name}`
             li(style="list-style-type: none; color:blue; font-size:15px;")= `下单时间：${item.createdAt.getMonth() + 1}月${item.createdAt.getDate()}日${item.createdAt.getHours()}时${item.createdAt.getMinutes()}分`     
             li(style="list-style-type: none; color:DeepPink; font-size:15px;")= `订单总价：$${item.totalPrice}`  
             li(style="list-style-type: none; color:blue;  font-size:15px;")= `订单状态：${item.status}`

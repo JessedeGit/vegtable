@@ -1,6 +1,7 @@
 /**
  * Module dependencies.
  */
+var util = require('util');
 const express = require('express');
 const compression = require('compression');
 const session = require('express-session');
@@ -88,7 +89,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 app.use((req, res, next) => {
-  if (req.path === '/api/upload') {
+  if ((req.path === '/api/upload') || (req.path === '/orderMng') || (req.path === '/endpoint1')) {
     next();
   } else {
     lusca.csrf()(req, res, next);
@@ -119,12 +120,13 @@ app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }))
 /**
  * Primary app routes.
  */
-app.get('/orderMng', orderMngController.getOrderMng);
-// app.post('/orderMng', orderMngController.postOrderMng);
+
 app.get('/order', orderController.getOrder);
 app.get('/', homeController.getIndex);
 app.get('/home', homeController.getIndex);
 app.post('/', homeController.postIndex);
+app.get('/orderMng', orderMngController.getOrderMng);
+app.post('/orderMng', orderMngController.postOrderMng);
 app.post('/home', homeController.postIndex);
 app.get('/login', userController.getLogin);
 app.post('/login', userController.postLogin);
@@ -142,6 +144,8 @@ app.post('/account/profile', passportConfig.isAuthenticated, userController.post
 app.post('/account/password', passportConfig.isAuthenticated, userController.postUpdatePassword);
 app.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
 app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
+
+app.post('/endpoint1', orderMngController.postOrderMng);
 
 /**
  * API examples routes.
@@ -175,6 +179,7 @@ app.post('/api/upload', upload.single('myFile'), apiController.postFileUpload);
 app.get('/api/pinterest', passportConfig.isAuthenticated, passportConfig.isAuthorized, apiController.getPinterest);
 app.post('/api/pinterest', passportConfig.isAuthenticated, passportConfig.isAuthorized, apiController.postPinterest);
 app.get('/api/google-maps', apiController.getGoogleMaps);
+
 
 /**
  * OAuth authentication routes. (Sign in)

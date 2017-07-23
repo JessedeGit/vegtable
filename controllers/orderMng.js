@@ -28,35 +28,16 @@ exports.getOrderMng = (req, res) => {
 
 };
 
-/**
- * POST /contact
- * Send a contact form via Nodemailer.
- */
-// exports.postOrder = (req, res) => {
-//   req.assert('name', 'Name cannot be blank').notEmpty();
-//   req.assert('email', 'Email is not valid').isEmail();
-//   req.assert('message', 'Message cannot be blank').notEmpty();
+exports.postOrderMng = (req, res) => {
+   console.log('Request received: ');
+   console.log(req.body.data,req.body.status );
+    // util.log(util.inspect(req)) // this line helps you inspect the request so you can see whether the data is in the url (GET) or the req body (POST)
+    // util.log('Request recieved: \nmethod: ' + req.method + '\nurl: ' + req.url) // this line logs just the method and url
 
-//   const errors = req.validationErrors();
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    req.on('data', function (chunk) {
+        console.log('GOT DATA!');
+    });
+    res.end('callback(\'{\"msg\": \"OK\"}\')');
+};
 
-//   if (errors) {
-//     req.flash('errors', errors);
-//     return res.redirect('/contact');
-//   }
-
-//   const mailOptions = {
-//     to: 'your@email.com',
-//     from: `${req.body.name} <${req.body.email}>`,
-//     subject: 'Contact Form | Hackathon Starter',
-//     text: req.body.message
-//   };
-
-//   transporter.sendMail(mailOptions, (err) => {
-//     if (err) {
-//       req.flash('errors', { msg: err.message });
-//       return res.redirect('/contact');
-//     }
-//     req.flash('success', { msg: 'Email has been sent successfully!' });
-//     res.redirect('/contact');
-//   });
-// };
