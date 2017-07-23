@@ -18,7 +18,7 @@ block content
               li(style="overflow-x: auto; float: left;")= "☻" + pdt.name + pdt.qty + pdt.unit2.replace("/","") + "$" + pdt.totalPrice            
             <br />
             .col-sm-offset-2.col-sm-8
-              button.btn.btn-primary(id = `${item._id}` name = 'status' type='button' onclick="myFunction(this.id, this.name)" style="font-size:12px; overflow-x: auto; float: left; margin-left: 1px; color: black;background-color: white;") X未付款
+              button.btn.btn-primary(id = `${item._id}` name = 'status' type='button' onclick="myFunction(this.id, this.name)" style="font-size:12px; overflow-x: auto; float: left; margin-left: 1px; color: black;background-color: white;") #{item.status}
               //- button.btn.btn-primary(id = `${item._id}` name = 'status' type='primary' style="font-size:12px; overflow-x: auto; float: left; margin-left: 1px; color: black;background-color: white;") X未付款
               //- button.btn.btn-primary(type='submit' style="font-size:25px;") 
               //- |测试

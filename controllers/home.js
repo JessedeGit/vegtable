@@ -71,7 +71,7 @@ exports.postIndex = (req, res) => {
   const myOrder = new Orders({
     email: req.user.email,
     name: req.user.profile.name, 
-    status: "未付款",
+    status: "X未付款",
     totalPrice: totalPrice,
     // eTaketime:
     items: orderedPdt,

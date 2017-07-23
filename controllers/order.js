@@ -15,7 +15,7 @@ exports.getOrder = (req, res) => {
 
   MongoClient.connect(process.env.MONGODB_URI, function(err, db) {
     if (err) throw err;
-    var query = { email: req.user.email, status: '未付款' };
+    var query = { email: req.user.email, status: 'X未付款' };
     db.collection("orders").find(query).toArray(function(err, result) {
         if (err) throw err;
         // console.log(result);
