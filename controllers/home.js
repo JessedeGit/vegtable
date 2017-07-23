@@ -11,26 +11,29 @@ const alert = require('alert-node');
 const Orders = require('../models/Orders');
 
 // var products = Array.from(JSON.parse(fs.readFileSync('./data/currPrdt.data', 'utf8')).items);
-let products = {};
-let nextSale = 0;
-fs.readFile('./data/currPrdt.data', 'utf8', function (err, data) {
-  if (err) throw err;
-  // if (!fs.isEmptySync('./data/currPrdt.data'))
-  
-  if(!isJSON(data)) {
-    console.log('data: ' + data);
-    products = [];
-    nextSale = data.toString();
-  } else
-    products = Array.from(JSON.parse(data).items);
-});
-
 exports.getIndex = (req, res) => {
-  res.render('home', {
-    title: 'Home',
-    products,
-    nextSale,
+// const adminOrNot = process.env.ADMIN_EMAILS.includes(user.email);
+  let products = {};
+  let nextSale = 0;
+  fs.readFile('./data/currPrdt.data', 'utf8', function (err, data) {
+    if (err) throw err;
+    // if (!fs.isEmptySync('./data/currPrdt.data'))
+    
+    if(!isJSON(data)) {
+      console.log('data: ' + data);
+      products = [];
+      nextSale = data.toString();
+    } else
+      {products = Array.from(JSON.parse(data).items);
+        res.render('home', {
+        title: 'Home',
+        products,
+        nextSale,
+      // adminOrNot,
+      });}
   });
+
+  
 };
 
 exports.postIndex = (req, res) => {
@@ -67,9 +70,7 @@ exports.postIndex = (req, res) => {
   //write into database
   const myOrder = new Orders({
     email: req.user.email,
-    // number: 
-    name: req.user.name,
-    // data
+    name: req.user.profile.name, 
     status: "未付款",
     totalPrice: totalPrice,
     // eTaketime:
