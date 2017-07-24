@@ -70,8 +70,8 @@ exports.postOrderMng = (req, res) => {
     return res.render('home', {
     });  
   }  
-   console.log('Request received: ');
-   console.log(req.body.data,req.body.status );
+  //  console.log('Request received: ');
+  //  console.log(req.body.data,req.body.status );
     // util.log(util.inspect(req)) // this line helps you inspect the request so you can see whether the data is in the url (GET) or the req body (POST)
     // util.log('Request recieved: \nmethod: ' + req.method + '\nurl: ' + req.url) // this line logs just the method and url
 
@@ -81,7 +81,7 @@ exports.postOrderMng = (req, res) => {
     // });
     //write into database 
   
-  console.log('me是管理员！ '); 
+  // console.log('me是管理员！ '); 
   let query = {'_id': ObjectId(req.body.data)} ;  
   MongoClient.connect(process.env.MONGODB_URI, function(err, db) {
     if (err) throw err; 

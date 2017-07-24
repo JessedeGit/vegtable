@@ -2,7 +2,7 @@ extends layout
 
 block content
   .page-header
-    h4 History Order List 历史订单列表
+    h4 Paid or Canceled Order List 已付款或已取消订单列表
 
   form.form-horizontal(method='POST')
     //- .form-group
@@ -10,17 +10,20 @@ block content
     .form-group
       case rst.length
         when 0
-          h2(style="font-size:30px;color:green;")  目前没有历史订单！  
+          h2(style="font-size:30px;color:green;")  目前没有已付款或已取消订单！  
         default 
           each item, index in rst
-            li(style="color:Magenta;  font-size:15px;")= `${item.email}：$${item.totalPrice},下单${item.createdAt.getMonth() + 1}月${item.createdAt.getDate()}日${item.createdAt.getHours()}:${item.createdAt.getMinutes()}` 
-            li(style="color:blue;  font-size:15px;")= `客戶：${item.name}` + `, 取货：${item.fetchTime}`
-            //- li(style="list-style-type: none; color:blue;  font-size:15px;")= `所订货物:`            
-            each pdt, index in item.items
-              li(style="overflow-x: auto; float: left;")= "☻" + pdt.name + pdt.qty + pdt.unit2.replace("/","") + "$" + pdt.totalPrice            
-            br
-            p(style="display: block;")
-              .col-sm-offset-2.col-sm-8
+            div(style="display: block;")
+              li(style="color:Magenta;  font-size:15px;")= `${item.email}：$${item.totalPrice},下单${item.createdAt.getMonth() + 1}月${item.createdAt.getDate()}日${item.createdAt.getHours()}:${item.createdAt.getMinutes()}` 
+              li(style="color:blue;  font-size:15px;")= `客戶：${item.name}` + `, 取货：${item.fetchTime}`
+              //- li(style="list-style-type: none; color:blue;  font-size:15px;")= `所订货物:`            
+              each pdt, index in item.items
+                li(style="overflow-x: auto; float: left;")= "☻" + pdt.name + pdt.qty + pdt.unit2.replace("/","") + "$" + pdt.totalPrice            
+              br
+              br
+              div(style="display: block;")
+                //- .col-sm-offset-2.col-sm-8
                 button.btn.btn-primary(id = `${item._id}` name = 'status' type='button' onclick="myFunction(this.id, this.name)" style="display: block;font-size:12px; margin-left: 1px; color: black;background-color: white;") #{item.status}
+              div(style="display: block;")
   script 
     include ../public/js/script.js

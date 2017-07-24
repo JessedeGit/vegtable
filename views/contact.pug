@@ -18,8 +18,9 @@ block content
     label(class='col-sm-2 control-label', for='message') 
     .col-sm-8
       textarea.form-control(name='message', id='message', rows='15') #{notice}
-    //- .form-group
-    //-   .col-sm-offset-2.col-sm-8
-    //-     button.btn.btn-primary(type='submit')
-    //-       i.fa.fa-envelope
-    //-       | Send
+    .form-group
+      .col-sm-offset-2.col-sm-8
+        if user && process.env.ADMIN_EMAILS.includes(user.email)
+          button.btn.btn-primary(type='submit')
+            i.fa.fa-envelope
+            | Submit 提交
