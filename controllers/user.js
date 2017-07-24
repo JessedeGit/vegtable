@@ -41,7 +41,7 @@ exports.postLogin = (req, res, next) => {
     }
     req.logIn(user, (err) => {
       if (err) { return next(err); }
-      req.flash('success', { msg: 'Success! You are logged in.' });
+      req.flash('success', { msg: 'Success! You are logged in. | 您已经成功登陆！' });
       res.redirect(req.session.returnTo || '/');
     });
   })(req, res, next);

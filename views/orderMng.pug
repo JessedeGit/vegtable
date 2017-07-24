@@ -13,15 +13,15 @@ block content
           h2(style="font-size:30px;color:green;")  目前没有未付款订单！  
         default 
           each item, index in rst
-            hr
-            li(style="color:Magenta;  font-size:15px;")= `${item.email}：$${item.totalPrice},下单${item.createdAt.getMonth() + 1}月${item.createdAt.getDate()}日${item.createdAt.getHours()}:${item.createdAt.getMinutes()}` 
-            li(style="color:blue;  font-size:15px;")= `客戶：${item.name}` + `, 取货：${item.fetchTime}`
-            //- li(style="list-style-type: none; color:blue;  font-size:15px;")= `所订货物:`            
-            each pdt, index in item.items
-              li(style="overflow-x: auto; float: left;")= "☻" + pdt.name + pdt.qty + pdt.unit2.replace("/","") + "$" + pdt.totalPrice            
-            <br />
-            .col-sm-offset-2.col-sm-8
-              button.btn.btn-primary(id = `${item._id}` name = 'status' type='button' onclick="myFunction(this.id, this.name)" style="font-size:12px; overflow-x: auto; float: left; margin-left: 1px; color: black;background-color: white;") #{item.status}
-              hr
+            p
+              li(style="color:Magenta;  font-size:15px;")= `${item.email}：$${item.totalPrice},下单${item.createdAt.getMonth() + 1}月${item.createdAt.getDate()}日${item.createdAt.getHours()}:${item.createdAt.getMinutes()}` 
+              li(style="color:blue;  font-size:15px;")= `客戶：${item.name}` + `, 取货：${item.fetchTime}`
+              //- li(style="list-style-type: none; color:blue;  font-size:15px;")= `所订货物:`            
+              each pdt, index in item.items
+                li(style="overflow-x: auto; float: left;")= "☻" + pdt.name + pdt.qty + pdt.unit2.replace("/","") + "$" + pdt.totalPrice
+              br
+              p(style="display: block;")
+                .col-sm-offset-2.col-sm-8
+                  button.btn.btn-primary(id = `${item._id}` name = 'status' type='button' onclick="myFunction(this.id, this.name)" style="display: block; font-size:12px; margin-left: 1px; color: black;background-color: white;") #{item.status}
   script 
     include ../public/js/script.js
