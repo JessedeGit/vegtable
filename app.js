@@ -37,6 +37,7 @@ const apiController = require('./controllers/api');
 const contactController = require('./controllers/contact');
 const orderController = require('./controllers/order');
 const orderMngController = require('./controllers/orderMng');
+const orderMngControllerHis = require('./controllers/orderMngHis');
 
 /**
  * API keys and Passport configuration.
@@ -89,7 +90,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 app.use((req, res, next) => {
-  if ((req.path === '/api/upload') || (req.path === '/orderMng') || (req.path === '/endpoint1')) {
+  if ((req.path === '/api/upload') || (req.path === '/orderMng') || (req.path === '/endpoint1') || (req.path === '/displayScope') ) {
     next();
   } else {
     lusca.csrf()(req, res, next);
@@ -127,6 +128,8 @@ app.get('/home', homeController.getIndex);
 app.post('/', homeController.postIndex);
 app.get('/orderMng', orderMngController.getOrderMng);
 app.post('/orderMng', orderMngController.postOrderMng);
+app.get('/orderMngHis', orderMngControllerHis.getOrderMngHis);
+app.post('/orderMngHis', orderMngControllerHis.postOrderMngHis);
 app.post('/home', homeController.postIndex);
 app.get('/login', userController.getLogin);
 app.post('/login', userController.postLogin);
@@ -146,6 +149,7 @@ app.post('/account/delete', passportConfig.isAuthenticated, userController.postD
 app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
 
 app.post('/endpoint1', orderMngController.postOrderMng);
+// app.post('/displayScope', orderMngController.postDisplayScope);
 
 /**
  * API examples routes.

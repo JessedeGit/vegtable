@@ -2,7 +2,7 @@ extends layout
 
 block content
   .page-header
-    h4 Unpaid Order List 未付款订单列表
+    h4 History Order List 历史订单列表
 
   form.form-horizontal(method='POST')
     //- .form-group
@@ -10,7 +10,7 @@ block content
     .form-group
       case rst.length
         when 0
-          h2(style="font-size:30px;color:green;")  目前没有未付款订单！  
+          h2(style="font-size:30px;color:green;")  目前没有历史订单！  
         default 
           each item, index in rst
             hr

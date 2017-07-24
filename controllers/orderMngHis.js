@@ -4,9 +4,9 @@ const Orders = require('../models/Orders');
 const ObjectId = require('mongodb').ObjectID;
 let rst = null;
 
-var query = { status: 'X未付款' };
+var query = {  status: {$not: /X未付款/ } } ;
 
-exports.getOrderMng = (req, res) => {
+exports.getOrderMngHis = (req, res) => {
 
   // let query = { email: req.user.email, status: '未付款' };
   if (!req.user) { // not login?
@@ -20,8 +20,8 @@ exports.getOrderMng = (req, res) => {
     db.collection("orders").find(query).sort({email: 1}).toArray(function(err, result) {
         if (err) throw err;
         rst = result;
-        res.render('orderMng', {
-        title: 'OrderMng',
+        res.render('orderMngHis', {
+        title: 'OrderMngHis',
         rst,
         query,
         // statusOfSubmitBtn,
@@ -62,7 +62,7 @@ exports.getOrderMng = (req, res) => {
 //   });
 // }
 
-exports.postOrderMng = (req, res) => {
+exports.postOrderMngHis = (req, res) => {
   // console.log('管理员?');    
   if (!process.env.ADMIN_EMAILS.includes(req.user.email) ) { // not admin?
     req.flash('success', { msg: '您不是管理员！' });

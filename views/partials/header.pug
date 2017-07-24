@@ -22,6 +22,9 @@
         if user && process.env.ADMIN_EMAILS.includes(user.email)
           li 
             a(href='/orderMng') Order Management | 管理订单
+        if user && process.env.ADMIN_EMAILS.includes(user.email)
+          li 
+            a(href='/orderMngHis') History Order Management | 管理历史订单
       ul.nav.navbar-nav.navbar-right
         if !user
           li(class=(title == 'Login') ? 'active' : undefined)

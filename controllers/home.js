@@ -60,7 +60,7 @@ exports.postIndex = (req, res) => {
   if(!anyQty) {
     // alert('貌似您还没有订购任何产品？');  
     // res.send(500,'貌似您还没有订购任何产品？请返回订购！');  
-    req.flash('success', { msg: '貌似您还没有订购任何产品？' });   
+    req.flash('success', { msg: 'Looks you have not selected any product? | 貌似您还没有订购任何产品？' });   
     return res.redirect('/home');
   }
 
