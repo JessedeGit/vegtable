@@ -30,6 +30,13 @@ exports.getOrderMng = (req, res) => {
 };
 
 exports.postOrderMng = (req, res) => {
+  // console.log('管理员?');    
+  if (!process.env.ADMIN_EMAILS.includes(req.user.email) ) { // not admin?
+    req.flash('success', { msg: '您不是管理员！' });
+    // console.log('您不是管理员！ ');    
+    return res.render('home', {
+    });  
+  }  
    console.log('Request received: ');
    console.log(req.body.data,req.body.status );
     // util.log(util.inspect(req)) // this line helps you inspect the request so you can see whether the data is in the url (GET) or the req body (POST)
@@ -40,11 +47,8 @@ exports.postOrderMng = (req, res) => {
     //     console.log('GOT DATA!');
     // });
     //write into database 
-  // if (!process.env.ADMIN_EMAILS.includes(user.email) ) { // not admin?
-  //   req.flash('success', { msg: '您不是管理员！' });
-  //   return res.render('home', {
-  //   });  
-  // }  
+  
+  console.log('me是管理员！ '); 
   let query = {'_id': ObjectId(req.body.data)} ;  
   MongoClient.connect(process.env.MONGODB_URI, function(err, db) {
     if (err) throw err; 
