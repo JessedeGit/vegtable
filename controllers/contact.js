@@ -43,7 +43,7 @@ exports.postContact = (req, res) => {
   req.assert('email', 'Email is not valid').isEmail();
   req.assert('message', 'Message cannot be blank').notEmpty();
 
-  const errors = req.getValidationResult();
+  const errors = req.validationErrors();
 
   if (errors) {
     req.flash('errors', errors);

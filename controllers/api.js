@@ -255,7 +255,8 @@ exports.getTwitter = (req, res, next) => {
 exports.postTwitter = (req, res, next) => {
   req.assert('tweet', 'Tweet cannot be empty').notEmpty();
 
-  const errors = req.getValidationResult();
+  const errors = req.validationErrors();
+  // const errors = req.get ValidationResult(); validationErrors
 
   if (errors) {
     req.flash('errors', errors);
@@ -381,7 +382,7 @@ exports.postTwilio = (req, res, next) => {
   req.assert('number', 'Phone number is required.').notEmpty();
   req.assert('message', 'Message cannot be blank.').notEmpty();
 
-  const errors = req.getValidationResult();
+  const errors = req.validationErrors();
 
   if (errors) {
     req.flash('errors', errors);
@@ -593,7 +594,7 @@ exports.postPinterest = (req, res, next) => {
   req.assert('note', 'Note cannot be blank.').notEmpty();
   req.assert('image_url', 'Image URL cannot be blank.').notEmpty();
 
-  const errors = req.getValidationResult();
+  const errors = req.validationErrors();
 
   if (errors) {
     req.flash('errors', errors);

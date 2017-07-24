@@ -26,7 +26,7 @@ exports.postLogin = (req, res, next) => {
   req.assert('password', 'Password cannot be blank').notEmpty();
   req.sanitize('email').normalizeEmail({ gmail_remove_dots: false });
 
-  const errors = req.getValidationResult();
+  const errors = req.validationErrors();
 
   if (errors) {
     req.flash('errors', errors);
@@ -80,7 +80,7 @@ exports.postSignup = (req, res, next) => {
   req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
   req.sanitize('email').normalizeEmail({ gmail_remove_dots: false });
 
-  const errors = req.getValidationResult();
+  const errors = req.validationErrors();
 
   if (errors) {
     req.flash('errors', errors);
@@ -129,7 +129,7 @@ exports.postUpdateProfile = (req, res, next) => {
   req.assert('email', 'Please enter a valid email address.').isEmail();
   req.sanitize('email').normalizeEmail({ gmail_remove_dots: false });
 
-  const errors = req.getValidationResult();
+  const errors = req.validationErrors();
 
   if (errors) {
     req.flash('errors', errors);
@@ -165,7 +165,7 @@ exports.postUpdatePassword = (req, res, next) => {
   req.assert('password', 'Password must be at least 4 characters long').len(4);
   req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
 
-  const errors = req.getValidationResult();
+  const errors = req.validationErrors();
 
   if (errors) {
     req.flash('errors', errors);
@@ -245,7 +245,7 @@ exports.postReset = (req, res, next) => {
   req.assert('password', 'Password must be at least 4 characters long.').len(4);
   req.assert('confirm', 'Passwords must match.').equals(req.body.password);
 
-  const errors = req.getValidationResult();
+  const errors = req.validationErrors();
 
   if (errors) {
     req.flash('errors', errors);
@@ -320,7 +320,7 @@ exports.postForgot = (req, res, next) => {
   req.assert('email', 'Please enter a valid email address.').isEmail();
   req.sanitize('email').normalizeEmail({ gmail_remove_dots: false });
 
-  const errors = req.getValidationResult();
+  const errors = req.validationErrors();
 
   if (errors) {
     req.flash('errors', errors);

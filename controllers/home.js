@@ -94,7 +94,7 @@ exports.postIndex = (req, res) => {
   // req.assert('email', 'Email is not valid11').isEmail();
   // req.assert('message', 'Message cannot be blank11').notEmpty();
 
-  // const errors = req.getValidationResult();
+  // const errors = req.validationErrors();
 
   // if (errors) {
   //   req.flash('errors', errors);
