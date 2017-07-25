@@ -9,7 +9,7 @@
 let fs = require('fs');
 const alert = require('alert-node');
 const Orders = require('../models/Orders');
-  let products = {};
+let products = {};
 
 // var products = Array.from(JSON.parse(fs.readFileSync('./data/currPrdt.data', 'utf8')).items);
 exports.getIndex = (req, res) => {

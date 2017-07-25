@@ -9,6 +9,7 @@
       a.navbar-brand(href='/')
         i.fa.fa-users
         | Weimin Online 为民团购
+      hr
     .collapse.navbar-collapse
       ul.nav.navbar-nav
         li(class=(title == 'Home') ? 'active' : undefined)
@@ -18,13 +19,16 @@
         li
           a(href='/order') My Order | 我的订单
         li(class=(title == 'Contact') ? 'active' : undefined)
-          a(href='/contact') Notice Board | 公告栏
+          a(href='/contact') Notice | 公告
         if user && process.env.ADMIN_EMAILS.includes(user.email)
           li 
-            a(href='/orderMng') Order Management | 管理订单
+            a(href='/orderMng') Order Mgmt | 管理订单
         if user && process.env.ADMIN_EMAILS.includes(user.email)
           li 
-            a(href='/orderMngHis') History Order Management | 管理历史订单
+            a(href='/orderMngHis') History Order Mgmt | 看历史订单
+        if user && process.env.ADMIN_EMAILS.includes(user.email)
+          li 
+            a(href='/mngPro') Product Mgmt | 编辑待售产品
       ul.nav.navbar-nav.navbar-right
         if !user
           li(class=(title == 'Login') ? 'active' : undefined)

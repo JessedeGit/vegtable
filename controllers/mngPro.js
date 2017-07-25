@@ -16,7 +16,7 @@ let fs = require('fs');
 let notice = '';
 
 
-exports.getContact = (req, res) => {
+exports.getMngPro = (req, res) => {
   fs.readFile('./data/notice.data', 'utf8', function (err, data) {
     if (err) throw err;
     // if (!fs.isEmptySync('./data/currPrdt.data'))  
@@ -27,8 +27,8 @@ exports.getContact = (req, res) => {
     //   nextSale = data.toString();
     // } else
     //   products = Array.from(JSON.parse(data).items);
-      res.render('contact', {
-      title: 'contact',
+      res.render('mngPro', {
+      title: 'mngPro',
       notice,
     });
   });
@@ -38,14 +38,13 @@ exports.getContact = (req, res) => {
  * POST /contact
  * Send a contact form via Nodemailer.
  */
-exports.postContact = (req, res) => {
+exports.postMngPro = (req, res) => {
 
   // console.log(req.body.message);
   fs.writeFile('./data/notice.data', req.body.message, (err) => {
     if (err) throw err;
     console.log('The file has been saved!');
-    req.flash('success', { msg:'Submitted successfully. | 您已经成功提交!' });
-    res.redirect('/contact');
+    res.redirect('/mngPro');
   });
 
 //   req.assert('name', 'Name cannot be blank').notEmpty();
