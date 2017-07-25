@@ -10,7 +10,7 @@ block content
     .form-group
       case rst.length
         when 0
-          h2(style="font-size:30px;color:green;")  目前没有未付款订单！  
+          h2(style="font-size:30px;color:green;")  No uppaid order currently. | 目前没有未付款订单！  
         default 
           each item, index in rst
             div(style="display: block;")

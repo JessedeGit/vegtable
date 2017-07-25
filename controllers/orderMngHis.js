@@ -17,7 +17,7 @@ exports.getOrderMngHis = (req, res) => {
 
   MongoClient.connect(process.env.MONGODB_URI, function(err, db) {
     if (err) throw err;    
-    db.collection("orders").find(query).sort({email: 1}).toArray(function(err, result) {
+    db.collection("orders").find(query).sort({updatedAt: -1}).toArray(function(err, result) {
         if (err) throw err;
         rst = result;
         res.render('orderMngHis', {
