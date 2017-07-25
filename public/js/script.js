@@ -1,39 +1,33 @@
 var http = require('http');
 const User = require('../models/User');
 
-// function displayScope(id){
-//     // alert('displayScope before ajax');
-//   const btn = document.getElementById(id);
-// //   alert(btn.innerHTML);
-//   let nextBtnHTML = '';
-//   if (btn.innerHTML == '点我就显示已付款订单'){
-//       nextBtnHTML = '再点我就显示已取消订单';      
-//   }
-//   if (btn.innerHTML == '再点我就显示已取消订单'){
-//       nextBtnHTML = '再点我就显示全部订单';      
-//   }
-//   if (btn.innerHTML == '再点我就显示全部订单'){
-//       nextBtnHTML = '再点我就显示未付款订单';      
-//   }
-//   if (btn.innerHTML == '再点我就显示未付款订单'){
-//     nextBtnHTML = '点我就显示已付款订单';      
-//   }
-  
-//   $.ajax({
-//         url: '/displayScope',
-//         // dataType: "jsonp",
-//         data: {data: nextBtnHTML },
-//         type: 'POST',
-//         jsonpCallback: 'callback', // this is not relevant to the POST anymore
-//         success: function (data) {
-//             var ret = jQuery.parseJSON(data);
-//             console.log('Success: ')
-//         },
-//         error: function (xhr, status, error) {
-//             console.log('Error: ' + error.message);
-//         },
-//     });
-// };
+function cleanInput(x){
+  x.setAttribute("value", "");
+};
+
+function add2Db(){
+    let  name = document.getElementById('name').value;
+    let    u1 = document.getElementById('unit1').value;
+    let price = document.getElementById('price').value;
+    let    u2 = document.getElementById('unit2').value;
+    $.ajax({
+        url: '/pdt2db',
+        data: {name: name, unit1: u1, price: price, unit2: u2},
+        type: 'POST',
+        jsonpCallback: 'callback', // this is not relevant to the POST anymore
+        success: function (data) {
+            alert("This record update successfully. 这条记录已经添加成功！");
+            document.getElementById('name').value = '如：金色猕猴桃';
+            document.getElementById('unit1').value = '如：整箱(36粒)';
+            document.getElementById('price').value = '35';
+            document.getElementById('unit2').value = '如：/箱';
+        },
+        error: function (xhr, status, error) {
+            console.log('Error: ' + error.message);
+        },
+    });
+};
+
 
 function myFunction(id, name) {
   // const User = require('../models/User');      

@@ -10,7 +10,7 @@ block content
       hr
       case nextSale
         when 0
-          h2(style="font-size:20px;color:green;")  ON SALE 正在销售    
+          h2(style="font-size:20px;color:green;")  ON SALE | 正在销售    
           each item, index in products
             li(style="list-style-type: none; color:Magenta; width: 100px; overflow-x: auto; float: left; margin-left: 5px; font-size:20px;")= item.name
             li(style="list-style-type: none; color:blue; width: 100px; overflow-x: auto; float: left; margin-left: 3px; font-size:20px;")= item.unit1
@@ -27,7 +27,7 @@ block content
               .col-sm-offset-2.col-sm-8
                 button.btn.btn-primary(type='submit' style="font-size:25px;")
                   i.fa.fa-envelope
-                  | Submit 提交订单
+                  | Submit | 提交订单
         default
           h2 #{nextSale}
       //- if user && process.env.ADMIN_EMAILS.includes(user.email)

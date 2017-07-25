@@ -91,7 +91,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 app.use((req, res, next) => {
-  if ((req.path === '/api/upload') || (req.path === '/orderMng') || (req.path === '/endpoint1') || (req.path === '/displayScope') ) {
+  if ((req.path === '/api/upload') || (req.path === '/orderMng') || (req.path === '/endpoint1') || (req.path === '/displayScope') || (req.path === '/pdt2db') ) {
     next();
   } else {
     lusca.csrf()(req, res, next);
@@ -152,6 +152,8 @@ app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userControl
 
 app.post('/endpoint1', orderMngController.postOrderMng);
 // app.post('/displayScope', orderMngController.postDisplayScope);
+app.post('/pdt2db', mngProController.pdt2db);
+
 
 /**
  * API examples routes.

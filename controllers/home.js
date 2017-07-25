@@ -24,7 +24,7 @@ exports.getIndex = (req, res) => {
       products = [];
       nextSale = data.toString();
     } else
-      {products = Array.from(JSON.parse(data).items);
+      { products = Array.from(JSON.parse(data).items);
         res.render('home', {
         title: 'Home',
         products,

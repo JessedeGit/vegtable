@@ -2,25 +2,29 @@ extends layout
 
 block content
   .page-header
-    h3 Edit on sale products. | 编辑待售产品
-
+    h5 Edit products 编辑待售产品
   form.form-horizontal(method='POST')
-    input(type='hidden', name='_csrf', value=_csrf)
-    //- .form-group
-    //-   label(class='col-sm-2 control-label', for='name') Name
-    //-   .col-sm-8
-    //-     input.form-control(type='text', name='name', id='name', autofocus=true)
-    //- .form-group
-    //-   label(class='col-sm-2 control-label', for='email') Email
-    //-   .col-sm-8
-    //-     input.form-control(type='text', name='email', id='email')
-    //- .form-group
-    label(class='col-sm-2 control-label', for='message') 
-    .col-sm-8
-      textarea.form-control(name='message', id='message', rows='15') #{notice}
+    //- input(type='hidden', name='_csrf', value=_csrf)
+    .form-group
+      label(class='col-sm-2 control-label', for='name') Product Name | 产品名称
+      .col-sm-8
+        input.form-control(onclick='cleanInput(this)', type='text', name='name', id='name', autofocus=true, value='如：金色猕猴桃') 
+    .form-group
+      label(class='col-sm-2 control-label', for='unit1') Sale Unit | 售卖单位
+      .col-sm-8
+        input.form-control(onfocus='cleanInput(this)', type='text', name='unit1', id='unit1', value='如：整箱(36粒)')
+    .form-group
+      label(class='col-sm-2 control-label', for='price') Unit Price | 单价
+      .col-sm-8
+        input.form-control(onfocus='cleanInput(this)', type='number', name='price', id='price', value='35') 
+    .form-group
+      label(class='col-sm-2 control-label', for='unit2') Buy unit | 购买单位
+      .col-sm-8
+        input.form-control(onfocus='cleanInput(this)', type='text', name='unit2', id='unit2', value='如：/箱')
     .form-group
       .col-sm-offset-2.col-sm-8
         if user && process.env.ADMIN_EMAILS.includes(user.email)
-          button.btn.btn-primary(type='submit')
-            i.fa.fa-envelope
-            | Submit 提交
+          button.btn.btn-primary(type='button' onclick="add2Db()")
+            | Add in 添加到当前销售列表
+  script 
+    include ../public/js/script.js
