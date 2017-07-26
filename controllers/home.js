@@ -9,29 +9,51 @@
 let fs = require('fs');
 const alert = require('alert-node');
 const Orders = require('../models/Orders');
-let products = {};
+const MongoClient = require('mongodb').MongoClient;
 
+
+
+// let products = {};
 // var products = Array.from(JSON.parse(fs.readFileSync('./data/currPrdt.data', 'utf8')).items);
+
+let products = null;
 exports.getIndex = (req, res) => {
 // const adminOrNot = process.env.ADMIN_EMAILS.includes(user.email);
   let nextSale = 0;
-  fs.readFile('./data/currPrdt.data', 'utf8', function (err, data) {
+  MongoClient.connect(process.env.MONGODB_URI, function(err, db) {
     if (err) throw err;
-    // if (!fs.isEmptySync('./data/currPrdt.data'))
-    
-    if(!isJSON(data)) {
-      console.log('data: ' + data);
-      products = [];
-      nextSale = data.toString();
-    } else
-      { products = Array.from(JSON.parse(data).items);
+    var query = { };
+    db.collection("products").find(query).toArray(function(err, result) {
+        if (err) throw err;
+        products = result;
+        nextSale = products.length;
         res.render('home', {
-        title: 'Home',
+        title: 'home',
         products,
         nextSale,
-      // adminOrNot,
-      });}
-  });
+      });
+      db.close();
+    });
+  }); 
+
+
+  // fs.readFile('./data/currPrdt.data', 'utf8', function (err, data) {
+  //   if (err) throw err;
+  //   // if (!fs.isEmptySync('./data/currPrdt.data'))
+    
+  //   if(!isJSON(data)) {
+  //     console.log('data: ' + data);
+  //     products = [];
+  //     nextSale = data.toString();
+  //   } else
+  //     { products = Array.from(JSON.parse(data).items);
+  //       res.render('home', {
+  //       title: 'Home',
+  //       products,
+  //       nextSale,
+  //     // adminOrNot,
+  //     });}
+  // });
 
   
 };

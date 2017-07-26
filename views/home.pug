@@ -8,28 +8,27 @@ block content
   form.form-horizontal(method='POST')    
     .form-group
       hr
-      case nextSale
-        when 0
-          h2(style="font-size:20px;color:green;")  ON SALE | 正在销售    
-          each item, index in products
-            li(style="list-style-type: none; color:Magenta; width: 100px; overflow-x: auto; float: left; margin-left: 5px; font-size:20px;")= item.name
-            li(style="list-style-type: none; color:blue; width: 100px; overflow-x: auto; float: left; margin-left: 3px; font-size:20px;")= item.unit1
-            li(style="list-style-type: none; color:DeepPink; width: 70px; overflow-x: auto; float: left; margin-left: 3px; font-size:20px;")= '$' + item.price + item.unit2     
-            input(name = `input${index}` id = `input${index}` size = '1' value='0' type="number" min="0" style="display:inline; margin-left: 5px;overflow-x: auto;  width: 30px;")
-            hr
-            //- button.btn.btn-primary(type='submit' style="font-size:100px;")
-            //- a.btn.btn-default(type='submit' href='#', role='button' style="font-size:30px;color:green;") 
-          input(type='hidden', name='_csrf', value=_csrf)
-          .form-group
-              label(class='col-sm-2 control-label') Estimated Fetch Time | 预计取货时间
-              .col-sm-8
-                input.form-control(onfocus="myFunction(this)", type='text', name='fetchTime', id='fetchTime', value='点此填取货时间| Put fecth time here', style="font-size:20px;color:red;background-color:lightyellow;")
-              .col-sm-offset-2.col-sm-8
-                button.btn.btn-primary(type='submit' style="font-size:25px;")
-                  i.fa.fa-envelope
-                  | Submit | 提交订单
-        default
-          h2 #{nextSale}
+      if nextSale
+        h2(style="font-size:20px;color:green;")  ON SALE | 正在销售    
+        each item, index in products
+          li(style="list-style-type: none; color:Magenta; width: 100px; overflow-x: auto; float: left; margin-left: 5px; font-size:20px;")= item.name
+          li(style="list-style-type: none; color:blue; width: 100px; overflow-x: auto; float: left; margin-left: 3px; font-size:20px;")= item.unit1
+          li(style="list-style-type: none; color:DeepPink; width: 70px; overflow-x: auto; float: left; margin-left: 3px; font-size:20px;")= '$' + item.price + item.unit2     
+          input(name = `input${index}` id = `input${index}` size = '1' value='0' type="number" min="0" style="display:inline; margin-left: 5px;overflow-x: auto;  width: 30px;")
+          hr
+          //- button.btn.btn-primary(type='submit' style="font-size:100px;")
+          //- a.btn.btn-default(type='submit' href='#', role='button' style="font-size:30px;color:green;") 
+        input(type='hidden', name='_csrf', value=_csrf)
+        .form-group
+            label(class='col-sm-2 control-label') Estimated Fetch Time | 预计取货时间
+            .col-sm-8
+              input.form-control(onfocus="myFunction(this)", type='text', name='fetchTime', id='fetchTime', value='点此填取货时间| Put fecth time here', style="font-size:20px;color:red;background-color:lightyellow;")
+            .col-sm-offset-2.col-sm-8
+              button.btn.btn-primary(type='submit' style="font-size:25px;")
+                i.fa.fa-envelope
+                | Submit | 提交订单
+      else
+        h2 Please wait for the next sale. | 请等下次销售通知！
       //- if user && process.env.ADMIN_EMAILS.includes(user.email)
       //-   .col-sm-offset-2.col-sm-8
       //-     button.btn.btn-primary(id = 'mngPro' name = 'mngPro' type='button' onclick="mngPro(this.name)" style="font-size:20px; ") Manage Products 编辑产品
