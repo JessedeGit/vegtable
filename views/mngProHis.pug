@@ -18,7 +18,7 @@ block content
             //- onclick="mv2Htry(this.id, this.name)"
             //- value=`${item.name}, $${item.price}${item.unit2}`
             input(id=`${item._id}` type='checkbox' value="newsletter" name="subscribe" checked onchange="mv2Htry(this.id, this.name)")
-            label(for=`${item._id}` id = `${item._id}` + '1') #{item.name}, #{item.price}, #{item.unit2}  
+            label(for=`${item._id}` id = `${item._id}` + '1') #{item.name}, $#{item.price}, #{item.unit2}  
 
 
           //- li(style="list-style-type: none; color:Magenta;  font-size:15px;")= `客户邮件：${item.email}`
