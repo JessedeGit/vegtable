@@ -4,6 +4,7 @@ const User = require('../models/User');
 
 function mv2Htry(id,name){
     document.getElementById(id).style.visibility = 'hidden';
+    document.getElementById(id + "1").style.visibility = 'hidden';
     $.ajax({
         url: '/mv2Htry',
         data: {id:id,name:name},

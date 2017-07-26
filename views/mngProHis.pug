@@ -9,11 +9,16 @@ block content
         h2(style="font-size:30px;color:green;")  目前数据库里没有待售产品！  
       default 
         each item, index in rst
-          div(style="display: block;")
-            li(style="overflow-x: auto; float: left;color:blue; font-size:15px;")= `${item.name}, $${item.price}${item.unit2}`
-            button.btn.btn-primary(style="overflow-x: auto; float: left;font-size:10px; margin-left: 1px; color: black;background-color: white;" id = `${item._id}` name = 'status' type='button' onclick="mv2Htry(this.id, this.name)") ✘
-              //- i.fa.fa-envelope
-          div(style="display: block;")
+          .form-group
+            //- div(style="display: block;")
+            //-   li(style="color:blue; font-size:20px;")= `${item.name}, $${item.price}${item.unit2}`
+            //-   button.btn.btn-primary(style="float: right;font-size:10px; margin-left: 1px; color: black;background-color: white;" id = `${item._id}` name = 'status' type='button' onclick="mv2Htry(this.id, this.name)") ✘
+            //-     //- i.fa.fa-envelope
+            //- div(style="display: block;")
+            //- onclick="mv2Htry(this.id, this.name)"
+            //- value=`${item.name}, $${item.price}${item.unit2}`
+            input(id=`${item._id}` type='checkbox' value="newsletter" name="subscribe" checked onchange="mv2Htry(this.id, this.name)")
+            label(for=`${item._id}` id = `${item._id}` + '1') #{item.name}, #{item.price}, #{item.unit2}  
 
 
           //- li(style="list-style-type: none; color:Magenta;  font-size:15px;")= `客户邮件：${item.email}`
