@@ -10,6 +10,15 @@ function add2Db(){
     let    u1 = document.getElementById('unit1').value;
     let price = document.getElementById('price').value;
     let    u2 = document.getElementById('unit2').value;
+
+    if(name.length <= 0) {alert('您是否没有填写产品名称？'); return;}
+    if(price.length <= 0) {alert('您是否没有填写价格？'); return;}
+    if(u2.length <= 0) {alert('您是否没有填写售卖单位？'); return;}
+    
+    if(name.length > 15) {alert('产品名称最好不要超过15个字符.'); return;}
+    if(name.length > 10) {alert('售卖单位最好不要超过10个字符.'); return;}
+    if(price <= 0) {alert('价格是否正确？'); return;}
+    
     $.ajax({
         url: '/pdt2db',
         data: {name: name, unit1: u1, price: price, unit2: u2},
@@ -18,7 +27,7 @@ function add2Db(){
         success: function (data) {
             alert("This record update successfully. 这条记录已经添加成功！");
             document.getElementById('name').value = '如：金色猕猴桃';
-            document.getElementById('unit1').value = '如：整箱(36粒)';
+            document.getElementById('unit1').value = '如：整箱(36粒) 或填 半箱起卖' ;
             document.getElementById('price').value = '35';
             document.getElementById('unit2').value = '如：/箱';
         },

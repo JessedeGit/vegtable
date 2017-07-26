@@ -1,5 +1,6 @@
+// import { Products } from '../models/Products';
 const Orders = require('../models/Orders');
-const Products = require('../models/Products');
+const pro = require('../models/Products');
 const MongoClient = require('mongodb').MongoClient;
 const ObjectId = require('mongodb').ObjectID;
 
@@ -25,7 +26,7 @@ exports.pdt2db = (req, res) => {
         return res.render('home', {
         }); 
     }
-    const myPdt = new Products({
+    const myPdt = new pro.Products({
     name: req.body.name,
     price: req.body.price,
     unit1: req.body.unit1,
