@@ -1,3 +1,4 @@
+// will leave this module as it is, while we are planning to use email to login in only currently.
 const passport = require('passport');
 const request = require('request');
 const InstagramStrategy = require('passport-instagram').Strategy;
