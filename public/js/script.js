@@ -1,6 +1,23 @@
 var http = require('http');
 const User = require('../models/User');
 
+
+function mv2Htry(id,name){
+    $.ajax({
+        url: '/mv2Htry',
+        data: {id:id,name:name},
+        type: 'POST',
+        jsonpCallback: 'callback', // this is not relevant to the POST anymore
+        success: function (data) {
+            alert("已经back");
+        },
+        error: function (xhr, status, error) {
+            console.log('Error: ' + error.message);
+        },
+    });
+};
+
+
 function cleanInput(x){
   x.setAttribute("value", "");
 };

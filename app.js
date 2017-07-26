@@ -36,6 +36,7 @@ const userController = require('./controllers/user');
 const apiController = require('./controllers/api');
 const contactController = require('./controllers/contact');
 const mngProController = require('./controllers/mngPro');
+const mngProHisController = require('./controllers/mngProHis');
 const orderController = require('./controllers/order');
 const orderMngController = require('./controllers/orderMng');
 const orderMngControllerHis = require('./controllers/orderMngHis');
@@ -91,7 +92,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 app.use((req, res, next) => {
-  if ((req.path === '/api/upload') || (req.path === '/orderMng') || (req.path === '/endpoint1') || (req.path === '/displayScope') || (req.path === '/pdt2db') ) {
+  if ((req.path === '/api/upload') || (req.path === '/orderMng') || (req.path === '/endpoint1') || (req.path === '/displayScope') || (req.path === '/pdt2db') || (req.path === '/mv2Htry')) {
     next();
   } else {
     lusca.csrf()(req, res, next);
@@ -122,6 +123,7 @@ app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }))
 /**
  * Primary app routes.
  */
+app.get('/mngProHis', mngProHisController.getMngProHis);
 app.get('/mngPro', mngProController.getMngPro);
 app.post('/mngPro', mngProController.postMngPro);
 app.get('/order', orderController.getOrder);
@@ -153,6 +155,7 @@ app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userControl
 app.post('/endpoint1', orderMngController.postOrderMng);
 // app.post('/displayScope', orderMngController.postDisplayScope);
 app.post('/pdt2db', mngProController.pdt2db);
+app.post('/mv2Htry', mngProHisController.mv2Htry);
 
 
 /**
@@ -246,7 +249,7 @@ app.use(errorHandler());
  * Start Express server.
  */
 app.listen(app.get('port'), () => {
-  console.log('%s App is running at http://localhost:%d in %s mode', chalk.green('✓'), app.get('port'), app.get('env')); 
+  console.log('%s App is running at http://localhost:%d in %s mode', chalk.green('✓'), app.get('port'), app.get('env'));
   console.log('  Press CTRL-C to stop\n');
 });
 

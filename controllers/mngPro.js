@@ -5,10 +5,6 @@ const MongoClient = require('mongodb').MongoClient;
 const ObjectId = require('mongodb').ObjectID;
 
 
-exports.postMngPro = (req, res) => {
-  
-};
-
 
 exports.getMngPro = (req, res) => {
     res.render('mngPro', {
@@ -16,7 +12,10 @@ exports.getMngPro = (req, res) => {
     });
 
 };
+exports.postMngPro = (req, res) => {
 
+
+};
 
 exports.pdt2db = (req, res) => {
     console.log(req.body.name);
@@ -33,22 +32,36 @@ exports.pdt2db = (req, res) => {
     unit2: req.body.unit2,
 
     });  
- 
-  let query = {'_id': ObjectId(req.body.data)} ;  
-  MongoClient.connect(process.env.MONGODB_URI, function(err, db) {
-    if (err) throw err; 
-    db.collection("products").insert(myPdt);
-    // res.redirect('/order');    
-    // req.flash('success', { msg: 'Dababase update successfully. | 此记录已经更新到数据库！' });   
-    db.close();
+    myPdt.save();
     res.writeHead(200, { 'Content-Type': 'text/plain' });
         res.on('data', function (chunk) {
         console.log('GOT DATA!');
         got = chunk.toString(data);
-        console.log(got)
+        // console.log(got)
         });
     res.end();
-  });
+};
+
+//   let query = {'_id': ObjectId(req.body.data)} ;  
+//   MongoClient.connect(process.env.MONGODB_URI, function(err, db) {
+//     if (err) throw err; 
+//     db.collection("products").insert(myPdt);
+//     // res.redirect('/order');    
+//     // req.flash('success', { msg: 'Dababase update successfully. | 此记录已经更新到数据库！' });   
+//     db.close();
+//     res.writeHead(200, { 'Content-Type': 'text/plain' });
+//         res.on('data', function (chunk) {
+//         console.log('GOT DATA!');
+//         got = chunk.toString(data);
+//         console.log(got)
+//         });
+//     res.end();
+
+//   });
+
+
+
+
  
 //   res.render('mngPro', {
 //     title: 'mngPro', 
@@ -59,7 +72,7 @@ exports.pdt2db = (req, res) => {
 //   req.flash('success', { msg: 'Dababase update successfully. | 此记录已经更新到数据库！' });   
 
 //   res.end('callback(\'{\"msg\": \"OK\"}\')');  
-};
+
 // /**
 //  * POST /contact
 //  * Send a contact form via Nodemailer.
