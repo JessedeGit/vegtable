@@ -19,6 +19,7 @@ block content
     .col-sm-8
       textarea.form-control(name='message', id='message', rows='15') #{notice}
     hr
+    hr
     .form-group
       .col-sm-offset-2.col-sm-8
         if user && process.env.ADMIN_EMAILS.includes(user.email)
