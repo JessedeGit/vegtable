@@ -18,18 +18,20 @@ block content
       .col-sm-8
         input.form-control(onfocus='cleanInput(this)', type='number', name='price', id='price', value='35', min="0") 
     .form-group
-      label(class='col-sm-2 control-label', for='unit2') Buy unit | 购买单位
+      label(class='col-sm-2 control-label', for='unit2') Buy Unit | 购买单位
       .col-sm-8
         input.form-control(onfocus='cleanInput(this)', type='text', name='unit2', id='unit2', value='如：/箱')
     .form-group
       .col-sm-offset-2.col-sm-8
         if user && process.env.ADMIN_EMAILS.includes(user.email)
           button.btn.btn-primary(type='button' onclick="add2Db()")
-            | Add in 添加到当前销售列表
-      hr
+            | Add to sale list 添加到当前销售列表
       .col-sm-offset-2.col-sm-8
         if user && process.env.ADMIN_EMAILS.includes(user.email)
           ul 
-            a(href='/mngProHis') Review current product list | 查看当前销售列表
+            a(href='/mngProHis' style="overflow-x: auto; float: right;font-size:20px;") Hit to review current product list 
+          ul 
+            a(href='/mngProHis' style="overflow-x: auto; float: right;font-size:20px;") 点击我查看当前销售列表
+
   script 
     include ../public/js/script.js
