@@ -17,17 +17,17 @@ exports.getAccountMgmt = (req, res) => {
 
 exports.postDltEmail = (req, res) => {
   let result = 0;
+  
   MongoClient.connect(process.env.MONGODB_URI, function(err, db) {
     if (err) throw err;
-    // console.log(db.collection("users").remove({email:req.body.email}));
-    result = db.collection("users").remove({email:req.body.email}).nRemoved;
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-  // res.on('data', function (chunk) {
-  // // console.log('GOT DATA!');
-  // got = chunk.toString(data);
-    // });
-    res.write(result === 0 ? '数据库没有这个邮件，请核实！' : '恭喜你已经成功删除帐号！');
-    res.end();
+
+
+    db.collection("users").remove({email:req.body.email},function(err,result){
+      res.writeHead(200, { 'Content-Type': 'text/plain' });
+      // console.log("result" + JSON.parse(result).n);
+      res.write(JSON.parse(result).n == 0 ? '数据库没有这个邮件，请核实！' : '恭喜你已经成功删除帐号！');
+      res.end();
+      });        
   });
 
 };
