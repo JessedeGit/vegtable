@@ -2,27 +2,27 @@ extends ../layout
 
 block content
   .page-header
-    h3 Sign up
+    h3 Sign up 注册( Please use your Wechat user name to register! |请优先使用微信群内的昵称注册！)
   form.form-horizontal(id='signup-form', method='POST')
     input(type='hidden', name='_csrf', value=_csrf)
     .form-group
-      label.col-sm-3.control-label(for='email') Email
+      label.col-sm-3.control-label(for='email') Email | 电子邮件
       .col-sm-7
         input.form-control(type='email', name='email', id='email', placeholder='Email', autofocus, required)
     .form-group
-      label.col-sm-3.control-label(for='name') Name
+      label.col-sm-3.control-label(for='name') User name | 昵称
       .col-sm-7
         input.form-control(type='text', name='name', id='name', placeholder='name', required)
     .form-group
-      label.col-sm-3.control-label(for='password') Password
+      label.col-sm-3.control-label(for='password') Password | 密码
       .col-sm-7
         input.form-control(type='password', name='password', id='password', placeholder='Password', required)
     .form-group
-      label.col-sm-3.control-label(for='confirmPassword') Confirm Password
+      label.col-sm-3.control-label(for='confirmPassword') Confirm Password | 确认密码
       .col-sm-7
         input.form-control(type='password', name='confirmPassword', id='confirmPassword', placeholder='Confirm Password', required)
     .form-group
       .col-sm-offset-3.col-sm-7
         button.btn.btn-success(type='submit')
           i.fa.fa-user-plus
-          | Signup
+          | Signup | 注册
