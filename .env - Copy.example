@@ -1,5 +1,5 @@
-MONGODB_URI=mongodb://a933476:LabMongoA933@ds127163.mlab.com:27163/vegtabledb
-MONGOLAB_URI=mongodb://a933476:LabMongoA933@ds127163.mlab.com:27163/vegtabledb
+MONGODB_URI=mongodb://localhost:27017/test
+MONGOLAB_URI=mongodb://localhost:27017/test
 
 VEG_PORT=3000
 ADMIN_EMAILS=jessejob@126.com+testtest@example.com
