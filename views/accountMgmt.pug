@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  .page-header
+    h3 General management
+    h3 一般管理
+  .form-group
+    label(class='col-sm-2 control-label', for='email') Input email name to be deleted | 请输入计划删除的email名称
+    .col-sm-8
+      input.form-control(type='email', name='email', id='email', autofocus=true, value='sample@gmail.com') 
+    .form-group
+      .col-sm-offset-2.col-sm-8
+        if user && process.env.ADMIN_EMAILS.includes(user.email)
+          button.btn.btn-primary(type='button' onclick="dltEmail()")
+            | Hit to delete the account 点我删除此邮件帐户
+  script 
+    include ../public/js/script.js

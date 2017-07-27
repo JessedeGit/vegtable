@@ -2,6 +2,24 @@ var http = require('http');
 const User = require('../models/User');
 
 
+function dltEmail(){
+    let email = document.getElementById('email').value;
+    // alert(email);
+
+    $.ajax({
+        url: '/dltEmail',
+        data: {email:email},
+        type: 'POST',
+        jsonpCallback: 'callback', // this is not relevant to the POST anymore
+        success: function (data) {
+          alert(data);          
+        },
+        error: function (xhr, status, error) {
+            console.log('Error: ' + error.message);
+        },
+    });
+};
+
 function mv2Htry(id,name){
     document.getElementById(id).style.visibility = 'hidden';
     document.getElementById(id + "1").style.visibility = 'hidden';

@@ -40,6 +40,8 @@ const mngProHisController = require('./controllers/mngProHis');
 const orderController = require('./controllers/order');
 const orderMngController = require('./controllers/orderMng');
 const orderMngControllerHis = require('./controllers/orderMngHis');
+const accountMgmtController = require('./controllers/accountMgmt');
+
 
 /**
  * API keys and Passport configuration.
@@ -92,7 +94,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 app.use((req, res, next) => {
-  if ((req.path === '/api/upload') || (req.path === '/orderMng') || (req.path === '/endpoint1') || (req.path === '/displayScope') || (req.path === '/pdt2db') || (req.path === '/mv2Htry')) {
+  if ((req.path === '/api/upload') || (req.path === '/orderMng') || (req.path === '/endpoint1') || (req.path === '/dltEmail')  || (req.path === '/displayScope') || (req.path === '/pdt2db') || (req.path === '/mv2Htry')) {
     next();
   } else {
     lusca.csrf()(req, res, next);
@@ -123,6 +125,7 @@ app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }))
 /**
  * Primary app routes.
  */
+app.get('/accountMgmt', accountMgmtController.getAccountMgmt);
 app.get('/mngProHis', mngProHisController.getMngProHis);
 app.get('/mngPro', mngProController.getMngPro);
 app.post('/mngPro', mngProController.postMngPro);
@@ -156,6 +159,7 @@ app.post('/endpoint1', orderMngController.postOrderMng);
 // app.post('/displayScope', orderMngController.postDisplayScope);
 app.post('/pdt2db', mngProController.pdt2db);
 app.post('/mv2Htry', mngProHisController.mv2Htry);
+app.post('/dltEmail', accountMgmtController.postDltEmail);
 
 
 /**

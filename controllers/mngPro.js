@@ -18,7 +18,7 @@ exports.postMngPro = (req, res) => {
 };
 
 exports.pdt2db = (req, res) => {
-    console.log(req.body.name);
+    // console.log(req.body.name);
     if (!process.env.ADMIN_EMAILS.includes(req.user.email) ) { // not admin?
         req.flash('success', { msg: '您不是管理员！' });
         // console.log('您不是管理员！ ');    

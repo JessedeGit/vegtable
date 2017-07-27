@@ -50,3 +50,7 @@
               li.divider
               li
                 a(href='/logout') Logout | 退出
+              if user && process.env.ADMIN_EMAILS.includes(user.email)
+                li.divider
+                li
+                  a(href='/accountMgmt') Account Mgmt | 帐户管理
