@@ -17,7 +17,7 @@ let notice = '';
 
 
 exports.getContact = (req, res) => {
-  fs.readFile('./data/notice.data', 'utf8', function (err, data) {
+  fs.readFile('./notice.data', 'utf8', function (err, data) {
     if (err) throw err;
     // if (!fs.isEmptySync('./data/currPrdt.data'))  
     notice = data;
@@ -41,7 +41,7 @@ exports.getContact = (req, res) => {
 exports.postContact = (req, res) => {
 
   // console.log(req.body.message);
-  fs.writeFile('./data/notice.data', req.body.message, (err) => {
+  fs.writeFile('./notice.data', req.body.message, (err) => {
     if (err) throw err;
     console.log('The file has been saved!');
     req.flash('success', { msg:'Submitted successfully. | 您已经成功提交!' });
