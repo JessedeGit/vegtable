@@ -52,7 +52,7 @@ function add2Db(){
     if(price.length <= 0) {alert('您是否没有填写价格？'); return;}
     if(u2.length <= 0) {alert('您是否没有填写售卖单位？'); return;}
     
-    if(name.length > 20) {alert('产品名称最好不要超过20个字符.'); return;}
+    if(name.length > 18) {alert('产品名称最好不要超过18个字符.'); return;}
     if(u1.length > 10) {alert('售卖单位最好不要超过10个字符.'); return;}
     if(u2.length > 10) {alert('购买单位最好不要超过10个字符.'); return;}
     if(price <= 0) {alert('价格是否正确？'); return;}
