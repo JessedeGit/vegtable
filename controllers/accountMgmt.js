@@ -21,30 +21,11 @@ exports.postDltEmail = (req, res) => {
   MongoClient.connect(process.env.MONGODB_URI, function(err, db) {
     if (err) throw err;
 
-
     db.collection("users").remove({email:req.body.email},function(err,result){
       res.writeHead(200, { 'Content-Type': 'text/plain' });
-      // console.log("result" + JSON.parse(result).n);
-      res.write(JSON.parse(result).n == 0 ? '数据库没有这个邮件，请核实！' : '恭喜你已经成功删除帐号！');
+      res.write(JSON.parse(result).n == 0 ? '数据库没有这个邮件账号，请核实！' : '恭喜你已经成功删除帐号！');
       res.end();
       });        
   });
 
 };
-
-
-  // MongoClient.connect(process.env.MONGODB_URI, function(err, db) {
-  //   if (err) throw err;
-  //   var query = { email: req.user.email, status: 'X未付款' };
-  //   db.collection("orders").find(query).toArray(function(err, result) {
-  //       if (err) throw err;
-  //       // console.log(result);
-  //       rst = result;
-  //       // req.flash('success', { msg: rst.length});
-  //       res.render('order', {
-  //       title: 'Order',
-  //       rst,
-  //     });
-  //     db.close();
-  //   });
-  // });  

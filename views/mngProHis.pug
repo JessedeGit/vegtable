@@ -10,26 +10,7 @@ block content
       default 
         each item, index in rst
           .form-group
-            //- div(style="display: block;")
-            //-   li(style="color:blue; font-size:20px;")= `${item.name}, $${item.price}${item.unit2}`
-            //-   button.btn.btn-primary(style="float: right;font-size:10px; margin-left: 1px; color: black;background-color: white;" id = `${item._id}` name = 'status' type='button' onclick="mv2Htry(this.id, this.name)") ✘
-            //-     //- i.fa.fa-envelope
-            //- div(style="display: block;")
-            //- onclick="mv2Htry(this.id, this.name)"
-            //- value=`${item.name}, $${item.price}${item.unit2}`
             input(id=`${item._id}` type='checkbox' value="newsletter" name="subscribe" checked onchange="mv2Htry(this.id, this.name)")
             label(for=`${item._id}` id = `${item._id}` + '1') #{item.name}, $#{item.price}, #{item.unit2}  
-
-
-          //- li(style="list-style-type: none; color:Magenta;  font-size:15px;")= `客户邮件：${item.email}`
-          //- li(style="list-style-type: none; color:Magenta;  font-size:15px;")= `客户网名：${item.name}`
-          //- li(style="list-style-type: none; color:blue; font-size:15px;")= `下单时间：${item.createdAt.getMonth() + 1}月${item.createdAt.getDate()}日${item.createdAt.getHours()}时${item.createdAt.getMinutes()}分`     
-          //- li(style="list-style-type: none; color:DeepPink; font-size:15px;")= `订单总价：$${item.totalPrice}`  
-          //- li(style="list-style-type: none; color:blue;  font-size:15px;")= `订单状态：${item.status}`
-          //- li(style="list-style-type: none; color:blue;  font-size:15px;")= `预计取货时间：${item.fetchTime}`
-          //- li(style="list-style-type: none; color:blue;  font-size:15px;")= `所订货物:`            
-          //- each pdt, index in item.items
-          //-   li(style="list-style-type: none;")= `${index + 1}: ` + pdt.name + ", " + pdt.qty + pdt.unit2.replace("/","") + ", " + "共 $" + pdt.totalPrice              
-          //- hr
   script 
     include ../public/js/script.js     

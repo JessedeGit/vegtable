@@ -1,10 +1,6 @@
 extends layout
 
 block content
-  //- h1(style="font-size:30px;") Welcome to 为民团购
-  //- p.lead Focusing on servicing community 专注服务社区
-  //- .row
-  //-   .col-sm-6
   form.form-horizontal(method='POST')    
     .form-group
       hr
@@ -16,8 +12,6 @@ block content
           li(style="list-style-type: none; color:DeepPink; width: 70px; overflow-x: auto; float: left; margin-left: 3px; font-size:15px;")= '$' + item.price + item.unit2     
           input(name = `input${index}` id = `input${index}` size = '1' value='0' type="number" min="0" style="display:inline; margin-left: 5px;overflow-x: auto;  width: 25px;")
           hr
-          //- button.btn.btn-primary(type='submit' style="font-size:100px;")
-          //- a.btn.btn-default(type='submit' href='#', role='button' style="font-size:30px;color:green;") 
         input(type='hidden', name='_csrf', value=_csrf)
         .form-group
             label(class='col-sm-2 control-label') Estimated Fetch Time | 预计取货时间
@@ -29,28 +23,9 @@ block content
                 | Submit | 提交订单
       else
         h2 Please wait for the next sale. | 请等下次销售通知！
-      //- if user && process.env.ADMIN_EMAILS.includes(user.email)
-      //-   .col-sm-offset-2.col-sm-8
-      //-     button.btn.btn-primary(id = 'mngPro' name = 'mngPro' type='button' onclick="mngPro(this.name)" style="font-size:20px; ") Manage Products 编辑产品
-
   script.
     function myFunction(x){
       x.style.background = "white";
       x.setAttribute("value", "_月_日，周_");
     }  
        
-    //- .col-sm-6
-    //-   h2 Heading
-    //-   p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-    //-   p
-    //-     a.btn.btn-default(href='#', role='button') View details »
-    //- .col-sm-6
-    //-   h2 Heading
-    //-   p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-    //-   p
-    //-     a.btn.btn-default(href='#', role='button') View details »
-    //- .col-sm-6
-    //-   h2 Heading
-    //-   p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-    //-   p
-    //-     a.btn.btn-default(href='#', role='button') View details »

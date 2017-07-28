@@ -1,9 +1,5 @@
 const mongoose = require('mongoose');
 
-// const productSchema = new mongoose.Schema({
-  
-// }, { timestamps: true });
-
 const productSchema = new mongoose.Schema({
   name: { type: String },
   unit1: { type: String },
@@ -17,4 +13,3 @@ const productSchema = new mongoose.Schema({
  const ProductsOld = mongoose.model('ProductsOld', productSchema);
 
 module.exports = {Products:Products, ProductsOld:ProductsOld};
-// export { Products };

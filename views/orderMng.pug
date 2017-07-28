@@ -5,8 +5,6 @@ block content
     h4 Unpaid Order List 未付款订单列表
 
   form.form-horizontal(method='POST')
-    //- .form-group
-    //-   button.btn.btn-primary(type='submit' id='btnSelect' onclick="displayScope(this.id)" ) #{statusOfSubmitBtn}
     .form-group
       case rst.length
         when 0
@@ -16,14 +14,12 @@ block content
             div(style="display: block;")
               li(style="color:Magenta;  font-size:15px;")= `${item.email}:共$${item.totalPrice},下单${(new Date(Date.parse(item.createdAt) + 8*3600000) ).getMonth() + 1}月${(new Date(Date.parse(item.createdAt) + 8*3600000) ).getDate()}日${(new Date(Date.parse(item.createdAt) + 8*3600000) ).getHours()}:${(new Date(Date.parse(item.createdAt) + 8*3600000) ).getMinutes()}` 
               li(style="color:blue;  font-size:15px;")= `客戶:${item.name}` + `,取货:${item.fetchTime}` 
-              //- li(style="list-style-type: none; color:blue;  font-size:15px;")= `所订货物:`            
               each pdt, index in item.items
                 li(style="overflow-x: auto; float: left;")= "☻" + pdt.name + pdt.qty + pdt.unit2.replace("/","") + "$" + pdt.totalPrice
               br
               br
               div(style="display: block;")
               div(style="display: block;")
-                //- .col-sm-offset-2.col-sm-8
                 button.btn.btn-primary(id = `${item._id}` name = 'status' type='button' onclick="myFunction(this.id, this.name)" style="font-size:12px; margin-left: 1px; color: black;background-color: white;") #{item.status}
               div(style="display: block;")
   script 

@@ -1,5 +1,3 @@
-// const bcrypt = require('bcrypt-nodejs');
-// const crypto = require('crypto');
 const mongoose = require('mongoose');
 
 const itemSchema = new mongoose.Schema({
@@ -15,8 +13,6 @@ const itemSchema = new mongoose.Schema({
 
 const orderSchema = new mongoose.Schema({
   email: { type: String },
-  // password: String,
-  // passwordResetToken: String,  
   number: Number,
   name:String,
   date: { type: Date, default: Date.now },
@@ -27,24 +23,10 @@ const orderSchema = new mongoose.Schema({
   items: [itemSchema],
   fetchTime: String,
 }, { timestamps: true });
-  // facebook: String,
-  // twitter: String,
-  // google: String,
-  // github: String,
-  // instagram: String,
-  // linkedin: String,
-  // steam: String,
-  // tokens: Array,
 
-  // profile: {
-  //   name: String,
-  //   gender: String,
-  //   location: String,
-  //   website: String,
-  //   picture: String
-  // }
+const Order = mongoose.model('Order', orderSchema);
 
-
+module.exports = Order;
 /**
  * Password hash middleware.
  */
@@ -83,7 +65,3 @@ const orderSchema = new mongoose.Schema({
 //   const md5 = crypto.createHash('md5').update(this.email).digest('hex');
 //   return `https://gravatar.com/avatar/${md5}?s=${size}&d=retro`;
 // };
-
-const Order = mongoose.model('Order', orderSchema);
-
-module.exports = Order;

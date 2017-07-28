@@ -64,10 +64,6 @@ function add2Db(){
         jsonpCallback: 'callback', // this is not relevant to the POST anymore
         success: function (data) {
             alert("This record update successfully. 这条记录已经添加成功！");
-            // document.getElementById('name').value = '如：金色猕猴桃';
-            // document.getElementById('unit1').value = '如：整箱(36粒) 或填 半箱起卖' ;
-            // document.getElementById('price').value = '35';
-            // document.getElementById('unit2').value = '如：/箱';
         },
         error: function (xhr, status, error) {
             console.log('Error: ' + error.message);
@@ -77,17 +73,10 @@ function add2Db(){
 
 
 function myFunction(id, name) {
-  // const User = require('../models/User');      
   const btn = document.getElementById(id);
   if (btn.innerHTML == 'X未付款'){
     btn.innerHTML = '✓ 已付';
     btn.style = 'backgroundcolor: lightgreen;'; 
-    //let server end update database
-    // alert('before user.find...!');
-    // server end update database done
-    // var data = {};
-    // data.title = "title";
-    // data.message = "message";					
     $.ajax({
         url: '/endpoint1',
         // dataType: "jsonp",
@@ -102,14 +91,11 @@ function myFunction(id, name) {
             console.log('Error: ' + error.message);
         },
     });
-    //server end update database done            
   } else if (btn.innerHTML == '✓ 已付'){
       btn.innerHTML = '已取消';
       btn.style = 'backgroundcolor: pink;';
-    //let server end update database      
     $.ajax({
         url: '/endpoint1',
-        // dataType: "jsonp",
         data: {data: id, status: btn.innerHTML },
         type: 'POST',
         jsonpCallback: 'callback', // this is not relevant to the POST anymore
@@ -124,10 +110,8 @@ function myFunction(id, name) {
   } else if (btn.innerHTML == '已取消'){
     btn.innerHTML = 'X未付款';
     btn.style = 'color: black;backgroundcolor: white;';          
-    //let server end update database    
     $.ajax({
         url: '/endpoint1',
-        // dataType: "jsonp",
         data: {data: id, status: btn.innerHTML },
         type: 'POST',
         jsonpCallback: 'callback', // this is not relevant to the POST anymore
