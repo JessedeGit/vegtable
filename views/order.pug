@@ -14,7 +14,7 @@ block content
             li(style="list-style-type: none; color:blue; font-size:15px;")= `订单编号：${index + 1}`
             li(style="list-style-type: none; color:Magenta;  font-size:15px;")= `客户邮件：${item.email}`
             li(style="list-style-type: none; color:Magenta;  font-size:15px;")= `客户网名：${item.name}`
-            li(style="list-style-type: none; color:blue; font-size:15px;")= `下单时间：${(new Date(Date.parse(item.createdAt) + 8*3600000) ).getMonth() + 1}月${(new Date(Date.parse(item.createdAt) + 8*3600000) ).getDate()}日${item.createdAt.getHours()}时${(new Date(Date.parse(item.createdAt) + 8*3600000) ).getMinutes()}分`     
+            li(style="list-style-type: none; color:blue; font-size:15px;")= `下单时间：${(new Date(Date.parse(item.createdAt) + 8*3600000) ).getMonth() + 1}月${(new Date(Date.parse(item.createdAt) + 8*3600000) ).getDate()}日${(new Date(Date.parse(item.createdAt) + 8*3600000) ).getHours()}时${(new Date(Date.parse(item.createdAt) + 8*3600000) ).getMinutes()}分`     
             li(style="list-style-type: none; color:DeepPink; font-size:15px;")= `订单总价：$${item.totalPrice}`  
             li(style="list-style-type: none; color:blue;  font-size:15px;")= `订单状态：${item.status}`
             li(style="list-style-type: none; color:blue;  font-size:15px;")= `预计取货时间：${item.fetchTime}`
