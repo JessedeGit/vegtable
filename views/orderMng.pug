@@ -15,7 +15,7 @@ block content
           each item, index in rst
             div(style="display: block;")
               li(style="color:Magenta;  font-size:15px;")= `${item.email}：$${item.totalPrice},下单${(new Date(Date.parse(item.createdAt) + 8*3600000) ).getMonth() + 1}月${(new Date(Date.parse(item.createdAt) + 8*3600000) ).getDate()}日${(new Date(Date.parse(item.createdAt) + 8*3600000) ).getHours()}:${(new Date(Date.parse(item.createdAt) + 8*3600000) ).getMinutes()}` 
-              li(style="color:blue;  font-size:15px;")= `客戶：${item.name}` + `, 取货：${item.fetchTime}`
+              li(style="color:blue;  font-size:15px;")= `客戶：${item.name}` + `, 取货:${item.fetchTime}` + `,共$${item.totalPrice}`
               //- li(style="list-style-type: none; color:blue;  font-size:15px;")= `所订货物:`            
               each pdt, index in item.items
                 li(style="overflow-x: auto; float: left;")= "☻" + pdt.name + pdt.qty + pdt.unit2.replace("/","") + "$" + pdt.totalPrice
