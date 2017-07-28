@@ -31,3 +31,5 @@ bower_components
 .DS_Store
 Thumbs.db
 test.testonly
+
+data/notice.data
