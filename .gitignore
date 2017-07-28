@@ -7,7 +7,7 @@ lib-cov
 *.pid
 *.gz
 *.swp
-data/notice.data
+notice.data
 
 pids
 logs
