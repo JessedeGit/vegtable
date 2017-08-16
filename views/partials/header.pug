@@ -18,15 +18,15 @@
           a(href='/order') My Order | 我的订单
         li(class=(title == 'Contact') ? 'active' : undefined)
           a(href='/contact') Notice | 公告
-        if user && process.env.ADMIN_EMAILS.includes(user.email)
-          li 
-            a(href='/orderMng') Order Mgmt | 管理订单
-        if user && process.env.ADMIN_EMAILS.includes(user.email)
-          li 
-            a(href='/orderMngHis') History Order Mgmt | 看历史订单
-        if user && process.env.ADMIN_EMAILS.includes(user.email)
-          li 
-            a(href='/mngPro') Product Mgmt | 编辑待售产品
+        //- if user && process.env.ADMIN_EMAILS.includes(user.email)
+        li 
+          a(href='/orderMng') Order Mgmt | 管理订单
+        //- if user && process.env.ADMIN_EMAILS.includes(user.email)
+        li 
+          a(href='/orderMngHis') History Order Mgmt | 看历史订单
+        //- if user && process.env.ADMIN_EMAILS.includes(user.email)
+        li 
+          a(href='/mngPro') Product Mgmt | 编辑产品
       ul.nav.navbar-nav.navbar-right
         if !user
           li(class=(title == 'Login') ? 'active' : undefined)
@@ -48,7 +48,7 @@
               li.divider
               li
                 a(href='/logout') Logout | 退出
-              if user && process.env.ADMIN_EMAILS.includes(user.email)
+                //- if user && process.env.ADMIN_EMAILS.includes(user.email)
                 li.divider
                 li
                   a(href='/accountMgmt') Account Mgmt | 帐户管理

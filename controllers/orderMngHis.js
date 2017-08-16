@@ -8,7 +8,7 @@ var query = {  status: {$not: /X未付款/ } } ;
 exports.getOrderMngHis = (req, res) => {
   if (!req.user) { // not login?
   req.flash('success', { msg: 'Please login. | 请先登陆！' });
-  return res.render('home', {
+  return res.render('account/login', {
     });  
   }  
 

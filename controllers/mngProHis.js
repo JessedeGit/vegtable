@@ -23,7 +23,7 @@ exports.getMngProHis = (req, res) => {
 exports.mv2Htry = (req, res) => {
     if (!process.env.ADMIN_EMAILS.includes(req.user.email) ) { // not admin?
     req.flash('success', { msg: '您不是管理员！' });
-    return res.render('home', {
+    return res.render('hoaccount/login', {
     }); 
     }
 

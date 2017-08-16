@@ -14,7 +14,7 @@ exports.postMngPro = (req, res) => {
 exports.pdt2db = (req, res) => {
     if (!process.env.ADMIN_EMAILS.includes(req.user.email) ) { // not admin?
         req.flash('success', { msg: '您不是管理员！' });
-        return res.render('home', {
+        return res.render('account/login', {
         }); 
     }
     const myPdt = new pro.Products({
